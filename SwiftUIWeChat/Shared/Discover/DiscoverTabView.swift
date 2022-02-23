@@ -7,48 +7,72 @@
 
 import SwiftUI
 
+/// Reduce spacing between sections SwiftUI
+/// https://stackoverflow.com/a/62186463/5972156
+///
+/// Globally Reduce spacing between sections SwiftUI
+/// https://stackoverflow.com/a/68396510/5972156
+
 struct DiscoverTabView: View {
 
     var body: some View {
         NavigationView {
             List {
-                Section {
+                VStack(spacing: 0) {
                     NavigationLink {
-                        MomentsView()
+                        MomentsView(moments: [])
                     } label: {
                         momentRow
                     }
+                    .padding()
+                    
+                    sectionSpacing
                 }
-                
-                Section {
+                .listRowInsets(EdgeInsets())
+                                
+                VStack(spacing: 0) {
                     NavigationLink {
                         ChannelsView()
                     } label: {
                         channelsRow
                     }
+                    .padding()
+                    
+                    Divider()
 
                     NavigationLink {
                         LiveView()
                     } label: {
                         liveRow
                     }
+                    .padding()
+                    
+                    sectionSpacing
                 }
+                .listRowInsets(EdgeInsets())
                 
-                Section {
+                VStack(spacing: 0) {
                     NavigationLink {
                         TopStoriesView()
                     } label: {
                         topStoriesRow
                     }
+                    .padding()
+                    
+                    Divider()
                     
                     NavigationLink {
                         SearchView()
                     } label: {
                         searchRow
                     }
+                    .padding()
+                    
+                    sectionSpacing
                 }
+                .listRowInsets(EdgeInsets())
                 
-                Section {
+                VStack(spacing: 0) {
                     NavigationLink {
                         NearbyView()
                     } label: {
@@ -64,6 +88,14 @@ struct DiscoverTabView: View {
 }
 
 extension DiscoverTabView {
+    
+    var sectionSpacing: some View {
+        Rectangle()
+            .fill(Color(UIColor.systemGroupedBackground))
+            .frame(maxWidth: .infinity)
+            .frame(height: 16)
+    }
+    
     var momentRow: some View {
         HStack(spacing: 0) {
             Image(systemName: "network")

@@ -1,5 +1,5 @@
 //
-//  ChatTabView.swift
+//  ChatsTabView.swift
 //  SwiftUIWeChat
 //
 //  Created by peak on 2022/2/18.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChatTabView: View {
+struct ChatsTabView: View {
     
     @StateObject var chatVM = ChatViewModel()
     @StateObject var profileVM = ProfileViewModel()
@@ -112,7 +112,7 @@ struct ChatTabView: View {
 struct ChatTabView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChatTabView(chatVM: ChatViewModel(), profileVM: ProfileViewModel())
+            ChatsTabView(chatVM: ChatViewModel(), profileVM: ProfileViewModel())
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

@@ -8,29 +8,55 @@
 import SwiftUI
 
 struct MomentsView: View {
+    let moments: [Moment]
+    
+    init(moments: [Moment]) {
+        self.moments = Development.shared.moments
+    }
+    
     var body: some View {
-        List {
-            ForEach(1...20, id: \.self) { number in
-                Text("\(number)").padding()
+        VStack {
+            List {
+                ForEach(moments) { moment in
+                    MomentListRowView(moment: moment)
+                    MomentListRowView(moment: moment)
+                    MomentListRowView(moment: moment)
+                }
             }
+            .listStyle(.plain)
+            .listRowSeparator(.hidden)
         }
-        .listStyle(.plain)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Image(systemName: "camera")
-                    .onTapGesture {
-                        
-                    }
-                    .onLongPressGesture {
-                        
-                    }
-            }
+            toolbars()
+        }
+    }
+    
+    @ToolbarContentBuilder
+    func toolbars() -> some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            BackButton()
+        }
+        
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Image(systemName: "camera.fill")
+                .foregroundColor(.primary)
+                .onTapGesture {
+
+                }
+                .onLongPressGesture {
+
+                }
         }
     }
 }
 
 struct MomentsView_Previews: PreviewProvider {
     static var previews: some View {
-        MomentsView()
+        NavigationView {
+            MomentsView(moments: dev.moments)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }

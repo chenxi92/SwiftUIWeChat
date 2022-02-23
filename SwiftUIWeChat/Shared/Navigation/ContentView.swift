@@ -43,11 +43,11 @@ struct ContentView: View {
             profileTab
         }
         .accentColor(.green)
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitleDisplayMode(.inline)
     }
     
     var chatTab: some View {
-        ChatTabView()
+        ChatsTabView()
             .tabItem {
                 Label {
                     Text(Tab.chat.title)
@@ -59,7 +59,7 @@ struct ContentView: View {
     }
     
     var contactTab: some View {
-        ContactTabView()
+        ContactsTabView()
             .tabItem({
                 Label {
                     Text(Tab.contact.title)
@@ -83,7 +83,7 @@ struct ContentView: View {
     }
     
     var profileTab: some View {
-        ContactTabView()
+        MeTabView()
             .tabItem({
                 Label {
                     Text(Tab.profile.title)
@@ -92,15 +92,6 @@ struct ContentView: View {
                 }
             })
             .tag(Tab.profile)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
     }
 }
 

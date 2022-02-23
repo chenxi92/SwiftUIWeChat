@@ -18,20 +18,30 @@ struct Development {
     static let shared =  Development()
     private init() {}
     
+    let profile1: Profile = Profile(
+        id: UUID(),
+        icon: "https://tvax3.sinaimg.cn/crop.0.0.750.750.180/c67b8c76ly8fgbvbu2cszj20ku0kujsq.jpg",
+        name: "吃货少女侃侃",
+        region: "北京 西城区",
+        personalSign: nil,
+        gender: .female
+    )
+    
+    let profile2: Profile = Profile(
+        id: UUID(),
+        icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
+        name: "文艺青年",
+        region: "安道尔",
+        personalSign: "", gender: .male
+    )
+    
     var chats: [Chat] {
         [
             Chat(
                 id: UUID(),
                 isRead: true,
                 isVisiable: true,
-                profile: Profile(
-                    id: UUID(),
-                    icon: "https://tvax3.sinaimg.cn/crop.0.0.750.750.180/c67b8c76ly8fgbvbu2cszj20ku0kujsq.jpg",
-                    name: "吃货少女侃侃",
-                    region: "北京 西城区",
-                    personalSign: nil,
-                    gender: .female
-                ),
+                profile: profile1,
                 messages: [
                     Message(
                         id: UUID(),
@@ -69,13 +79,7 @@ struct Development {
                 id: UUID(),
                 isRead: false,
                 isVisiable: false,
-                profile: Profile(
-                    id: UUID(),
-                    icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
-                    name: "文艺青年",
-                    region: "安道尔",
-                    personalSign: "", gender: .male
-                ),
+                profile: profile2,
                 messages: [
                     Message(
                         id: UUID(),
@@ -105,4 +109,40 @@ struct Development {
             )
         ]
     }
+    
+    let contacts: [Profile] = [
+        Profile(id: UUID(), icon: "emoji-1", name: "ATest1", region: "中国", personalSign: nil, gender: .male),
+        Profile(id: UUID(), icon: "emoji-3", name: "ATest2", region: "北京", personalSign: "xxx", gender: .female),
+        Profile(id: UUID(), icon: "emoji-5", name: "CTest", region: "美国", personalSign: nil, gender: .male),
+        Profile(id: UUID(), icon: "emoji-7", name: "DTest1", region: "朝鲜", personalSign: nil, gender: .female)
+    ]
+    
+    var likes1: [Profile]  {
+        [
+            profile2
+        ]
+    }
+    
+    var comment1: Comment {
+        Comment(profile: profile2, text: "加油⛽️！！！")
+    }
+    
+    var momment1: Moment {
+        Moment(
+            profile: profile1,
+            date: Date(timeIntervalSinceNow: -3600*1),
+            text: "Connect with Apple experts through online sessions February 15 to March 29 to learn about the latest App Store features and get your questions answered. Find out how to create product pages that resonate best with the people you’d like to reach, provide great subscription experiences, distribute custom offer codes, and promote your in-app events. Register today if you’re a member of the Apple Developer Program.",
+            images: [],
+            link: nil,
+            likes: [profile1, profile2],
+            comments: [comment1]
+        )
+    }
+    
+    var moments: [Moment] {
+        [
+            momment1
+        ]
+    }
+    
 }

@@ -14,15 +14,12 @@ struct ChatListRow: View {
     @EnvironmentObject var profileVM: ProfileViewModel
     
     var body: some View {
-        ZStack {
+        CustomLinkRow {
             content
-            
-            NavigationLink(destination: MessageListView(chat: chat).environmentObject(chatVM).environmentObject(profileVM)) {
-            }
-            // hiden navation link arrow
-            .buttonStyle(PlainButtonStyle())
-            .frame(width:0)
-            .opacity(0)
+        } destination: {
+            MessageListView(chat: chat)
+                .environmentObject(chatVM)
+                .environmentObject(profileVM)
         }
     }
     
