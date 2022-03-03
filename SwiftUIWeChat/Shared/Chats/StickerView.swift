@@ -46,37 +46,38 @@ struct StickerView: View {
     let sendMessage: () -> Void
     
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Recently Used")
-                        .foregroundColor(.primary.opacity(0.7))
-                        .font(.callout)
-                    
-                    HStack {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Recently Used")
+                    .foregroundColor(.primary.opacity(0.7))
+                    .font(.callout)
+                
+                HStack {
+                    if recentUsedStickers.count == 0 {
+                        StickerText(sticker: "🇨🇳")
+                            .opacity(0)
+                    } else {
                         LazyVGrid(columns: columns, spacing: 0) {
                             ForEach(recentUsedStickers, id: \.self) { sticker in
                                 StickerText(sticker: sticker)
                             }
                         }
                     }
-                    .frame(maxHeight: 35)
-                    
-                    Text("All Stickers")
-                        .foregroundColor(.primary.opacity(0.7))
-                        .font(.callout)
-                    
-                    LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(allStickers, id: \.self) { sticker in
-                            StickerText(sticker: sticker)
-                        }
+                }
+                
+                Text("All Stickers")
+                    .foregroundColor(.primary.opacity(0.7))
+                    .font(.callout)
+                
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(allStickers, id: \.self) { sticker in
+                        StickerText(sticker: sticker)
                     }
                 }
             }
             
             overlayButtons()
-                .padding(.trailing, 5)
-                .padding(.bottom, 5)
+                .padding([.bottom, .trailing], 5)
         }
         .padding(.horizontal)
     }
@@ -91,20 +92,20 @@ struct StickerView: View {
     
     func overlayButtons() -> some View {
         HStack {
+            Spacer()
+            
             Button {
                 selectedSticker = String(selectedSticker.dropLast())
             } label: {
                 Image(systemName: "xmark.app")
                     .foregroundColor(selectedSticker.isEmpty ? .gray : .primary)
-                    .font(.title3)
+                    .font(.callout)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 15)
             .padding(.vertical, 10)
             .background(.thinMaterial)
             .border(Color.white, width: 1)
             .clipShape(RoundedRectangle(cornerRadius: 5))
-            .disabled(selectedSticker.isEmpty)
-            
 
             Button {
                 sendMessage()
@@ -113,12 +114,12 @@ struct StickerView: View {
                     .foregroundColor(selectedSticker.isEmpty ? .gray.opacity(0.8) : .white)
                     .font(.callout)
             }
-            .padding(10)
+            .padding(5)
             .background(Color.green)
             .border(Color.green, width: 1)
             .clipShape(RoundedRectangle(cornerRadius: 5))
-            .disabled(selectedSticker.isEmpty)
         }
+        .disabled(selectedSticker.isEmpty)
     }
     
     func onTapSticker(_ sticker: String) {
