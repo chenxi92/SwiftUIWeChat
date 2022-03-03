@@ -18,10 +18,25 @@ struct MessageListView: View {
     @State private var messageIDToScroll: UUID?
     @State private var tapedMessage: DoubleTapedMessage?
     
+    @State private var showHoldToTalk: Bool = false
+    @State private var showStickerView: Bool = false
+    @State private var showAdditionView: Bool = false
+    
     var body: some View {
         VStack(spacing: 0) {
             messageList()
+                .onTapGesture {
+                    tapedMessage = nil
+                    showHoldToTalk = false
+                    showStickerView = false
+                }
             toolBarView()
+            
+            if showStickerView {
+                StickerView(selectedSticker: $text) {
+                    sendMessage()
+                }
+            }
         }
         .toolbar {
             toolbarButtons()
@@ -59,27 +74,61 @@ struct MessageListView: View {
     
     private func toolBarView() -> some View {
         VStack {
-            let height: CGFloat = 37
+            let height: CGFloat = 40
+            let imageHeight: CGFloat = 28
+            
             HStack {
-                TextField("Message", text: $text)
-                    .padding(.horizontal, 10)
-                    .frame(height: height)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 13))
-                    .focused($isFocused)
+                Button {
+                    showHoldToTalk.toggle()
+                } label: {
+                    Image(systemName: "wave.3.forward.circle")
+                        .resizable()
+                        .foregroundColor(.primary)
+                        .frame(width: imageHeight, height: imageHeight)
+                }
+                
+                ZStack {
+                    TextField("", text: $text)
+                        .focused($isFocused)
+                        .opacity(showHoldToTalk ? 0 : 1)
+                        .onSubmit {
+                            sendMessage()
+                        }
+                    
+                    Text("Hold to Talk")
+                        .opacity(showHoldToTalk ? 1 : 0)
+                        .onLongPressGesture {
+                            /// to do ...
+                        }
+                }
+                .frame(height: height)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal)
+                .clipShape(RoundedRectangle(cornerRadius: 13))
+                .background(Color.white)
                 
                 Button {
-                    sendMessage()
+                    withAnimation {
+                        showStickerView.toggle()
+                    }
                 } label: {
-                    Image(systemName: "paperplane.fill")
-                        .foregroundColor(.white)
-                        .frame(width: height, height: height)
-                        .background(
-                            Circle()
-                                .foregroundColor(text.isEmpty ? .gray : .blue)
-                        )
+                    Image(systemName: "face.smiling")
+                        .resizable()
+                        .foregroundColor(.primary)
+                        .frame(width: imageHeight, height: imageHeight)
+                        .padding(.trailing, 5)
                 }
-                .disabled(text.isEmpty)
+                
+                Button {
+                    withAnimation {
+                        showAdditionView.toggle()
+                    }
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .resizable()
+                        .foregroundColor(.primary)
+                        .frame(width: imageHeight, height: imageHeight)
+                }
             }
         }
         .padding(.vertical)
@@ -108,7 +157,7 @@ struct MessageListView: View {
                     edge: message.type == .receiver ? .trailing : .leading,
                     width: viewWidth,
                     tapedMessage: $tapedMessage
-                )
+                ).padding(.bottom)
             }
         }
     }

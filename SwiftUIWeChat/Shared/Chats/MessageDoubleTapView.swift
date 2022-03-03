@@ -25,7 +25,6 @@ struct MessageDoubleTapView: View {
         ZStack {
             Color.primary
                 .opacity(0.08)
-                .edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .center) {
                 Text(messageObject.text)
@@ -34,6 +33,7 @@ struct MessageDoubleTapView: View {
                     .padding()
             }
         }
+        .edgesIgnoringSafeArea(.all)
         .onTapGesture {
             presentationMode.wrappedValue.dismiss()
         }
