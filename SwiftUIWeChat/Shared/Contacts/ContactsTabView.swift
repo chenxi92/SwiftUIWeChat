@@ -18,9 +18,6 @@ struct ContactsTabView: View {
             }
         }
         .listStyle(.plain)
-        .toolbar { toolbarContents }
-//        .navigationTitle("联系人")
-//        .navigationBarTitleDisplayMode(.inline)
     }
     
     func contactListRow(profile: Profile) -> some View {
@@ -37,18 +34,6 @@ struct ContactsTabView: View {
             }
         } destination: {
             Text("xxx")
-        }
-    }
-    
-    @ToolbarContentBuilder
-    var toolbarContents: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                isAddContacts.toggle()
-            } label: {
-                Image(systemName: "person.badge.plus")
-                    .foregroundColor(.primary)
-            }
         }
     }
 }
