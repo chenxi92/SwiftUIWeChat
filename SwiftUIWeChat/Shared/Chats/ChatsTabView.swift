@@ -12,58 +12,84 @@ struct ChatsTabView: View {
     @StateObject var chatVM = ChatViewModel()
     @StateObject var profileVM = ProfileViewModel()
     
-    @State private var showMenu = false
+    @Binding var isShowChatMenu: Bool
     
     var body: some View {
-        NavigationView {
+        ZStack(alignment: .topTrailing) {
             List {
                 ForEach(chatVM.chats) { chat in
                     listRow(chat: chat)
                 }
             }
             .listStyle(.plain)
+            .background(.thinMaterial)
             .searchable(text: $chatVM.searchText) {
                 searchView()
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        menuView()
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .foregroundColor(.primary)
+            
+            if isShowChatMenu {
+                Color.black.opacity(0.1)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        isShowChatMenu.toggle()
                     }
-                }
+                
+                menuView()
+                    .offset(y: 1)
             }
-            .navigationTitle("微信")
-            .navigationBarTitleDisplayMode(.inline)
         }
+    }
+    
+    func menuLabel(title: String, imageName: String) -> some View {
+        HStack {
+            Image(systemName: imageName)
+                .padding(.leading, 10)
+                .padding(.trailing)
+            Text(title)
+                .padding(.trailing)
+        }
+        .padding(.vertical, 5)
     }
     
     @ViewBuilder
     func menuView() -> some View {
-        Button {
+        VStack(alignment: .leading) {
+            Button {
+                withAnimation {
+                    isShowChatMenu.toggle()
+                }
+            } label: {
+                menuLabel(title: "发起群聊", imageName: "message")
+            }
             
-        } label: {
-            Label("发起群聊", systemImage: "message")
-        }
-        
-        Button {
+            Button {
+                withAnimation {
+                    isShowChatMenu.toggle()
+                }
+            } label: {
+                menuLabel(title: "添加朋友", imageName: "person.fill.badge.plus")
+            }
             
-        } label: {
-            Label("添加朋友", systemImage: "person.fill.badge.plus")
-        }
-        Button {
+            Button {
+                withAnimation {
+                    isShowChatMenu.toggle()
+                }
+            } label: {
+                menuLabel(title: "扫一扫", imageName: "qrcode.viewfinder")
+            }
             
-        } label: {
-            Label("扫一扫", systemImage: "qrcode.viewfinder")
+            Button {
+                withAnimation {
+                    isShowChatMenu.toggle()
+                }
+            } label: {
+                menuLabel(title: "收付款", imageName: "dollarsign.circle")
+            }
         }
-        
-        Button {
-            
-        } label: {
-            Label("收付款", systemImage: "dollarsign.circle")
-        }
+        .foregroundColor(.white)
+        .background(Color.black.opacity(0.7))
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+        .padding(.trailing)
     }
     
     func listRow(chat: Chat) -> some View {
@@ -112,7 +138,7 @@ struct ChatsTabView: View {
 struct ChatTabView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChatsTabView(chatVM: ChatViewModel(), profileVM: ProfileViewModel())
+            ChatsTabView(chatVM: ChatViewModel(), profileVM: ProfileViewModel(), isShowChatMenu: .constant(true))
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

@@ -16,74 +16,70 @@ import SwiftUI
 struct DiscoverTabView: View {
 
     var body: some View {
-        NavigationView {
-            List {
-                VStack(spacing: 0) {
-                    NavigationLink {
-                        MomentsView(moments: [])
-                    } label: {
-                        momentRow
-                    }
-                    .padding()
-                    
-                    sectionSpacing
+        List {
+            VStack(spacing: 0) {
+                NavigationLink {
+                    MomentsView(moments: [])
+                } label: {
+                    momentRow
                 }
-                .listRowInsets(EdgeInsets())
-                                
-                VStack(spacing: 0) {
-                    NavigationLink {
-                        ChannelsView()
-                    } label: {
-                        channelsRow
-                    }
-                    .padding()
-                    
-                    Divider()
+                .padding()
+                
+                sectionSpacing
+            }
+            .listRowInsets(EdgeInsets())
+                            
+            VStack(spacing: 0) {
+                NavigationLink {
+                    ChannelsView()
+                } label: {
+                    channelsRow
+                }
+                .padding()
+                
+                Divider()
 
-                    NavigationLink {
-                        LiveView()
-                    } label: {
-                        liveRow
-                    }
-                    .padding()
-                    
-                    sectionSpacing
+                NavigationLink {
+                    LiveView()
+                } label: {
+                    liveRow
                 }
-                .listRowInsets(EdgeInsets())
+                .padding()
                 
-                VStack(spacing: 0) {
-                    NavigationLink {
-                        TopStoriesView()
-                    } label: {
-                        topStoriesRow
-                    }
-                    .padding()
-                    
-                    Divider()
-                    
-                    NavigationLink {
-                        SearchView()
-                    } label: {
-                        searchRow
-                    }
-                    .padding()
-                    
-                    sectionSpacing
+                sectionSpacing
+            }
+            .listRowInsets(EdgeInsets())
+            
+            VStack(spacing: 0) {
+                NavigationLink {
+                    TopStoriesView()
+                } label: {
+                    topStoriesRow
                 }
-                .listRowInsets(EdgeInsets())
+                .padding()
                 
-                VStack(spacing: 0) {
-                    NavigationLink {
-                        NearbyView()
-                    } label: {
-                        nearbyRow
-                    }
+                Divider()
+                
+                NavigationLink {
+                    SearchView()
+                } label: {
+                    searchRow
+                }
+                .padding()
+                
+                sectionSpacing
+            }
+            .listRowInsets(EdgeInsets())
+            
+            VStack(spacing: 0) {
+                NavigationLink {
+                    NearbyView()
+                } label: {
+                    nearbyRow
                 }
             }
-            .listStyle(.grouped)
-            .navigationTitle("发现")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .listStyle(.grouped)
     }
 }
 

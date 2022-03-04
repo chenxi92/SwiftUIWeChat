@@ -11,23 +11,20 @@ struct MeTabView: View {
     @StateObject var profileVM = ProfileViewModel()
     
     var body: some View {
-        NavigationView {
-            GeometryReader { reader in
-                Color(UIColor.systemGroupedBackground)
-                
-                VStack {
-                    NavigationLink {
-                        Text("xx")
-                    } label: {
-                        header
-                            .frame(maxWidth: reader.size.width)
-                    }
-
-                   listContent
+        GeometryReader { reader in
+            Color(UIColor.systemGroupedBackground)
+            
+            VStack {
+                NavigationLink {
+                    Text("xx")
+                } label: {
+                    header
+                        .frame(maxWidth: reader.size.width)
                 }
-                .foregroundColor(.primary)
+
+               listContent
             }
-            .navigationBarHidden(true)
+            .foregroundColor(.primary)
         }
     }
     

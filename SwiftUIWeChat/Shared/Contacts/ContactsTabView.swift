@@ -12,17 +12,15 @@ struct ContactsTabView: View {
     @State private var isAddContacts: Bool = false
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(Development.shared.contacts, id: \.self) { profile in
-                    contactListRow(profile: profile)
-                }
+        List {
+            ForEach(Development.shared.contacts, id: \.self) { profile in
+                contactListRow(profile: profile)
             }
-            .listStyle(.plain)
-            .toolbar { toolbarContents }
-            .navigationTitle("联系人")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .listStyle(.plain)
+        .toolbar { toolbarContents }
+//        .navigationTitle("联系人")
+//        .navigationBarTitleDisplayMode(.inline)
     }
     
     func contactListRow(profile: Profile) -> some View {

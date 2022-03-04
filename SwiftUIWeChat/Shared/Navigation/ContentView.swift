@@ -7,91 +7,111 @@
 
 import SwiftUI
 
-struct ContentView: View {
+enum Tab {
+    case chat
+    case contact
+    case discover
+    case me
     
-    enum Tab {
-        case chat
-        case contact
-        case discover
-        case profile
-        
-        var title: String {
-            switch self {
-                case .chat: return "微信"
-                case .contact: return "通讯录信"
-                case .discover: return "发现"
-                case .profile: return "我"
-            }
-        }
-        var imageName: String {
-            switch self {
-                case .chat: return "message"
-                case .contact: return "book"
-                case .discover: return "paperplane"
-                case .profile: return "person"
-            }
+    var title: String {
+        switch self {
+            case .chat: return "微信"
+            case .contact: return "通讯录信"
+            case .discover: return "发现"
+            case .me: return "我"
         }
     }
+    var imageName: String {
+        switch self {
+            case .chat: return "message"
+            case .contact: return "book"
+            case .discover: return "paperplane"
+            case .me: return "person"
+        }
+    }
+}
+
+struct ContentView: View {
     
     @State private var selection: Tab = .chat
     
+    @State private var isShowChatMenu: Bool = false
+    @State private var isShowContactMenu: Bool = false
+    
     var body: some View {
-        TabView(selection: $selection) {
-            chatTab
-            contactTab
-            discoverTab
-            profileTab
+        NavigationView { /// <--- This may cause toolbar disappear in sub views, like: ChatsTabView, ContactsTabView, DiscoverTabView, MeTabView
+            TabView(selection: $selection) {
+                ChatsTabView(isShowChatMenu: $isShowChatMenu)
+                    .customTabItem(.chat)
+                    .onAppear {
+                        isShowChatMenu = false
+                    }
+                
+                ContactsTabView()
+                    .customTabItem(.contact)
+                    .onAppear {
+                        isShowContactMenu = false
+                    }
+                
+                DiscoverTabView()
+                    .customTabItem(.discover)
+                
+                MeTabView()
+                    .customTabItem(.me)
+            }
+            .accentColor(.green)
+            .navigationTitle(selection.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationViewStyle(.stack)
+            .navigationBarHidden(selection == .me ? true : false)
+            /// In order to show different toolbars in diffenent sub views,
+            .toolbar {
+                customToolBars()
+            }
         }
-        .accentColor(.green)
-//        .navigationBarTitleDisplayMode(.inline)
     }
     
-    var chatTab: some View {
-        ChatsTabView()
-            .tabItem {
-                Label {
-                    Text(Tab.chat.title)
-                } icon: {
-                    Image(systemName: Tab.chat.imageName)
+    @ToolbarContentBuilder
+    func customToolBars() -> some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            if selection == .chat {
+                Button {
+                    isShowChatMenu.toggle()
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .foregroundColor(.primary)
+                }
+            } else if selection == .contact {
+                Button {
+                    isShowContactMenu.toggle()
+                } label: {
+                    Image(systemName: "person.badge.plus")
+                        .foregroundColor(.primary)
                 }
             }
-            .tag(Tab.chat)
+        }
     }
+}
+
+private struct CustomTabItem: ViewModifier {
+    let tab: Tab
     
-    var contactTab: some View {
-        ContactsTabView()
-            .tabItem({
+    func body(content: Content) -> some View {
+        content
+            .tabItem {
                 Label {
-                    Text(Tab.contact.title)
+                    Text(tab.title)
                 } icon: {
-                    Image(systemName: Tab.contact.imageName)
+                    Image(systemName: tab.imageName)
                 }
-            })
-            .tag(Tab.contact)
+            }
+            .tag(tab)
     }
-    
-    var discoverTab: some View {
-        DiscoverTabView()
-            .tabItem({
-                Label {
-                    Text(Tab.discover.title)
-                } icon: {
-                    Image(systemName: Tab.discover.imageName)
-                }
-            })
-            .tag(Tab.discover)
-    }
-    
-    var profileTab: some View {
-        MeTabView()
-            .tabItem({
-                Label {
-                    Text(Tab.profile.title)
-                } icon: {
-                    Image(systemName: Tab.profile.imageName)
-                }
-            })
-            .tag(Tab.profile)
+}
+
+private extension View {
+    func customTabItem(_ tab: Tab) -> some View {
+        modifier(CustomTabItem(tab: tab))
     }
 }
 

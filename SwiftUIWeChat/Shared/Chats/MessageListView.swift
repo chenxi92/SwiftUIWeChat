@@ -38,10 +38,11 @@ struct MessageListView: View {
                 }
             }
         }
+        .background(.thinMaterial)
+        .navigationTitle(chat.profile.name)
         .toolbar {
             toolbarButtons()
         }
-        .navigationTitle(chat.profile.name)
     }
     
     private func messageList() -> some View {
