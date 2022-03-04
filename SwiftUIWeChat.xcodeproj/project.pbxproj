@@ -49,6 +49,7 @@
 		6CE5B37027D1B78F0025D46C /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */; };
 		6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37127D1BD170025D46C /* LocalCache.swift */; };
 		6CE5B37627D204080025D46C /* MessageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37527D204080025D46C /* MessageProfileView.swift */; };
+		6CE5B37827D214890025D46C /* MomentEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37727D214890025D46C /* MomentEditorView.swift */; };
 		6CFB73A527D0C0F900FC7873 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB73A427D0C0F900FC7873 /* StickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		6CE5B37127D1BD170025D46C /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		6CE5B37527D204080025D46C /* MessageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageProfileView.swift; sourceTree = "<group>"; };
+		6CE5B37727D214890025D46C /* MomentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentEditorView.swift; sourceTree = "<group>"; };
 		6CFB73A427D0C0F900FC7873 /* StickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +248,7 @@
 				6C92538427BF41C7003ADCBA /* DiscoverTabView.swift */,
 				15C761C027C536810045DC13 /* MomentsView.swift */,
 				6C3E082827C63AB400AC21BC /* MomentListRowView.swift */,
+				6CE5B37727D214890025D46C /* MomentEditorView.swift */,
 				15C761C227C536970045DC13 /* ChannelsView.swift */,
 				15C761C427C5369E0045DC13 /* LiveView.swift */,
 				15C761C627C536A80045DC13 /* TopStoriesView.swift */,
@@ -370,6 +373,7 @@
 				6C92538527BF41C7003ADCBA /* DiscoverTabView.swift in Sources */,
 				6C92536D27BF40DA003ADCBA /* ContentView.swift in Sources */,
 				6C92539027BF58FD003ADCBA /* ChatListRow.swift in Sources */,
+				6CE5B37827D214890025D46C /* MomentEditorView.swift in Sources */,
 				1548560E27BFE15000EDEAF8 /* Date+Helper.swift in Sources */,
 				6C92538927BF526C003ADCBA /* Chat.swift in Sources */,
 				15C761BF27C289E30045DC13 /* MessageDetailView.swift in Sources */,

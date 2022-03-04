@@ -14,17 +14,21 @@ struct MomentsView: View {
         self.moments = Development.shared.moments
     }
     
+    @State private var isShowMomentEditorView = false
+    @State private var isShowConfirmDialog = false
+    
     var body: some View {
         VStack {
-            List {
+            ScrollView {
                 ForEach(moments) { moment in
                     MomentListRowView(moment: moment)
                     MomentListRowView(moment: moment)
                     MomentListRowView(moment: moment)
                 }
             }
-            .listStyle(.plain)
-            .listRowSeparator(.hidden)
+            .fullScreenCover(isPresented: $isShowMomentEditorView, onDismiss: { isShowConfirmDialog = false }) {
+                MomentEditorView()
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -42,10 +46,10 @@ struct MomentsView: View {
             Image(systemName: "camera.fill")
                 .foregroundColor(.primary)
                 .onTapGesture {
-
+                    isShowConfirmDialog = true
                 }
                 .onLongPressGesture {
-
+                    isShowMomentEditorView = true
                 }
         }
     }
