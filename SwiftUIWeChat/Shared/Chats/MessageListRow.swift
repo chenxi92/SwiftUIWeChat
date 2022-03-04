@@ -14,6 +14,7 @@ struct MessageListRow: View {
     let width: CGFloat
     let scale: CGFloat = 0.85
     @Binding var tapedMessage: DoubleTapedMessage?
+    @EnvironmentObject var profileVM: ProfileViewModel
     
     var body: some View {
         if edge == .leading {
@@ -39,7 +40,7 @@ struct MessageListRow: View {
         HStack(alignment: .top, spacing: 0) {
             if edge == .leading {
                 NavigationLink {
-                    MessageDetailView()
+                    MessageProfileView()
                 } label: {
                     AvatarView(url: URL(string: iconURLString)!)
                 }
@@ -61,7 +62,7 @@ struct MessageListRow: View {
             
             if edge == .trailing {
                 NavigationLink {
-                    MessageDetailView()
+                    MessageProfileView()
                 } label: {
                     AvatarView(url: URL(string: iconURLString)!)
                 }
@@ -98,7 +99,7 @@ struct MessageListRow_Previews: PreviewProvider {
                             edge: .leading,
                             width: reader.size.width,
                             tapedMessage: .constant(nil)
-                        )
+                        ).environmentObject(ProfileViewModel())
                         
                         MessageListRow(
                             iconURLString: iconURLString,
@@ -106,7 +107,7 @@ struct MessageListRow_Previews: PreviewProvider {
                             edge: .trailing,
                             width: reader.size.width,
                             tapedMessage: .constant(nil)
-                        )
+                        ).environmentObject(ProfileViewModel())
                     }
                 }
             }

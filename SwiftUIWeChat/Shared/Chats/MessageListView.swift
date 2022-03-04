@@ -140,7 +140,7 @@ struct MessageListView: View {
     private func toolbarButtons() -> some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             NavigationLink {
-                MessageDetailView()
+                MessageDetailView(chat: chat)
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.primary)

@@ -22,7 +22,7 @@ struct BackButton: View {
             onButtonPress()
         } label: {
             Image(systemName: "chevron.left")
-                .padding()
+                .padding(.vertical)
                 .foregroundColor(foregroundColor)
         }
     }
