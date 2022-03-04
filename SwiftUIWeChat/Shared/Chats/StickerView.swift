@@ -10,79 +10,59 @@ import SwiftUI
 struct StickerView: View {
     
     @Binding var selectedSticker: String
+    let sendMessage: () -> Void
     
-    let allStickers: [String] = [
-        "😀", "😃", "😄", "😁",
-        "😆", "😅", "😂", "🤣",
-        "🥲", "☺️", "😊", "😇",
-        "🙂", "🙃", "😉", "😌",
-        "😍", "🥰", "😘", "😗",
-        "😙", "😚", "😋", "😛",
-        "🐶", "🐱", "🐭", "🐹",
-        "🐰", "🦊", "🐻", "🐼",
-        "🍏", "🍋", "🍓", "🍑",
-        "⚽️", "🥎", "🥏", "🏸",
-        "🚒", "🚛", "🚜", "🏍",
-        "🚍", "🚟", "🚃", "⌚️",
-        "🖥", "📽", "☎️", "🕰",
-        "🔦", "💡", "🪙", "❤️",
-        "🧡", "💚", "🤍", "🤎",
-        "💔", "❤️‍🔥", "💞", "❣️",
-        "💗", "💖", "💘", "💝",
-        "🚩", "🏴", "🏳️‍🌈", "🏳️‍⚧️",
-        "🏴‍☠️", "🏁", "🇦🇷", "🇦🇫",
-        "🇩🇿", "🇦🇱", "🇴🇲", "🇪🇪",
-        "🇮🇪", "🇪🇹", "🇪🇬", "🇦🇩",
-        "🇦🇴", "🇦🇮", "🇦🇬", "🇨🇳"
-    ]
+    @StateObject private var vm: StickerViewModel = StickerViewModel()
     
-    @State var recentUsedStickers: [String] = []
-    
-    let columns: [GridItem] = Array(
+    private let columns: [GridItem] = Array(
         repeating: GridItem(.flexible()),
         count: 8
     )
     
-    let sendMessage: () -> Void
-    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Recently Used")
-                    .foregroundColor(.primary.opacity(0.7))
-                    .font(.callout)
-                
-                HStack {
-                    if recentUsedStickers.count == 0 {
-                        StickerText(sticker: "🇨🇳")
-                            .opacity(0)
-                    } else {
-                        LazyVGrid(columns: columns, spacing: 0) {
-                            ForEach(recentUsedStickers, id: \.self) { sticker in
-                                StickerText(sticker: sticker)
-                            }
-                        }
-                    }
-                }
-                
-                Text("All Stickers")
-                    .foregroundColor(.primary.opacity(0.7))
-                    .font(.callout)
-                
-                LazyVGrid(columns: columns, spacing: 0) {
-                    ForEach(allStickers, id: \.self) { sticker in
-                        StickerText(sticker: sticker)
-                    }
-                }
-            }
+    
+            StickerViews()
             
-            overlayButtons()
+            BottomButtons()
                 .padding([.bottom, .trailing], 5)
         }
         .padding(.horizontal)
     }
     
-    func StickerText(sticker: String) -> some View {
+    private func StickerViews() -> some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text("Recently Used")
+                .foregroundColor(.primary.opacity(0.7))
+                .font(.callout)
+            
+            HStack {
+                // Add placeholder view
+                if vm.recentUsedStickers.count == 0 {
+                    StickerText(sticker: "🇨🇳")
+                        .opacity(0)
+                } else {
+                    LazyVGrid(columns: columns, spacing: 0) {
+                        ForEach(vm.recentUsedStickers, id: \.self) { sticker in
+                            StickerText(sticker: sticker)
+                        }
+                    }
+                }
+            }
+            
+            Text("All Stickers")
+                .foregroundColor(.primary.opacity(0.7))
+                .font(.callout)
+            
+            LazyVGrid(columns: columns, spacing: 0) {
+                ForEach(vm.allStickers, id: \.self) { sticker in
+                    StickerText(sticker: sticker)
+                }
+            }
+        }
+    }
+    
+    private func StickerText(sticker: String) -> some View {
         Text(sticker)
             .font(.title)
             .onTapGesture {
@@ -90,7 +70,7 @@ struct StickerView: View {
             }
     }
     
-    func overlayButtons() -> some View {
+    private func BottomButtons() -> some View {
         HStack {
             Spacer()
             
@@ -124,17 +104,7 @@ struct StickerView: View {
     
     func onTapSticker(_ sticker: String) {
         selectedSticker += sticker
-        if let index = recentUsedStickers.firstIndex(of: sticker) {
-            recentUsedStickers.swapAt(0, index)
-            return
-        }
-        if recentUsedStickers.count >= 8 {
-            var leadingStickers = recentUsedStickers.dropLast()
-            leadingStickers.insert(sticker, at: 0)
-            recentUsedStickers = Array(leadingStickers)
-        } else {
-            recentUsedStickers.insert(sticker, at: 0)
-        }
+        vm.onTapSticker(sticker: sticker)
     }
 }
 

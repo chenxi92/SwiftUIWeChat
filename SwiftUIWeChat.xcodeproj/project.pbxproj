@@ -46,6 +46,8 @@
 		6C92539027BF58FD003ADCBA /* ChatListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C92538F27BF58FD003ADCBA /* ChatListRow.swift */; };
 		6C92539427BF9227003ADCBA /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C92539327BF9227003ADCBA /* MessageListView.swift */; };
 		6C92539D27BFAAA4003ADCBA /* chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C92539C27BFAAA4003ADCBA /* chat.json */; };
+		6CE5B37027D1B78F0025D46C /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */; };
+		6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37127D1BD170025D46C /* LocalCache.swift */; };
 		6CFB73A527D0C0F900FC7873 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB73A427D0C0F900FC7873 /* StickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +93,8 @@
 		6C92538F27BF58FD003ADCBA /* ChatListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRow.swift; sourceTree = "<group>"; };
 		6C92539327BF9227003ADCBA /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		6C92539C27BFAAA4003ADCBA /* chat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chat.json; sourceTree = "<group>"; };
+		6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
+		6CE5B37127D1BD170025D46C /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		6CFB73A427D0C0F900FC7873 /* StickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +125,7 @@
 			children = (
 				6C86BD7B27C38B900055FF3F /* ImageLoaderService.swift */,
 				6C86BD7D27C38BF60055FF3F /* LocalFileManager.swift */,
+				6CE5B37127D1BD170025D46C /* LocalCache.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				6C92538F27BF58FD003ADCBA /* ChatListRow.swift */,
 				6C92539327BF9227003ADCBA /* MessageListView.swift */,
 				6CFB73A427D0C0F900FC7873 /* StickerView.swift */,
+				6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */,
 				6C86BD8127C4BC610055FF3F /* MessageListRow.swift */,
 				6C86BD8527C4CA900055FF3F /* MessageDoubleTapView.swift */,
 				15C761BE27C289E30045DC13 /* MessageDetailView.swift */,
@@ -356,6 +362,7 @@
 			files = (
 				6C86BD7C27C38B900055FF3F /* ImageLoaderService.swift in Sources */,
 				6C86BD7E27C38BF60055FF3F /* LocalFileManager.swift in Sources */,
+				6CE5B37027D1B78F0025D46C /* StickerViewModel.swift in Sources */,
 				15C761C327C536970045DC13 /* ChannelsView.swift in Sources */,
 				6C92538527BF41C7003ADCBA /* DiscoverTabView.swift in Sources */,
 				6C92536D27BF40DA003ADCBA /* ContentView.swift in Sources */,
@@ -365,6 +372,7 @@
 				15C761BF27C289E30045DC13 /* MessageDetailView.swift in Sources */,
 				6C92538127BF41AF003ADCBA /* ContactsTabView.swift in Sources */,
 				6C92538327BF41BC003ADCBA /* ChatsTabView.swift in Sources */,
+				6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */,
 				6CFB73A527D0C0F900FC7873 /* StickerView.swift in Sources */,
 				15C761C127C536810045DC13 /* MomentsView.swift in Sources */,
 				6C86BD8427C4C1CA0055FF3F /* Profile.swift in Sources */,
