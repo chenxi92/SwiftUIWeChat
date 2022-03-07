@@ -14,12 +14,15 @@ import SwiftUI
 /// https://stackoverflow.com/a/68396510/5972156
 
 struct DiscoverTabView: View {
-
+    @EnvironmentObject var profileVM: ProfileViewModel
+    
     var body: some View {
         List {
             VStack(spacing: 0) {
                 NavigationLink {
-                    MomentsView(moments: [])
+                    MomentsView()
+                        .environmentObject(profileVM)
+                        .environmentObject(MomentsViewModel())
                 } label: {
                     momentRow
                 }

@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct MomentListRowView: View {
+    @EnvironmentObject var profileVM: ProfileViewModel
+    @EnvironmentObject var momentsVM: MomentsViewModel
+    
     let moment: Moment
     @State private var isShowCommentView = false
     
     var body: some View {
         HStack(alignment: .top) {
-            HStack {
-                AvatarView(url: URL(string: moment.profile.icon)!)
+            AvatarView(url: URL(string: moment.profile.icon)!)
+            
+            VStack(alignment: .leading) {
+                nameLabel
+                content
+                bottomView
+                likesAndCommentsContent
             }
-                
-            HStack {
-                VStack(alignment: .leading) {
-                    nameLabel
-                    content
-                    bottomView
-                }
-                .padding(.horizontal)
-            }
+            .padding(.horizontal)
         }
         .onTapGesture {
             withAnimation {
@@ -52,25 +52,20 @@ struct MomentListRowView: View {
     
     var bottomView: some View {
         HStack {
-            dateLabel
+            Text(moment.date.asChatString())
+                .font(.callout)
+                .foregroundColor(.secondary)
+            
             Spacer()
 
             HStack(spacing: 2) {
                 Spacer()
                 if isShowCommentView {
-                    commentsView
+                    likesAndCommentsButton
                 }
                 commentButton
             }
-            .frame(maxWidth: .infinity)
         }
-        
-    }
-    
-    var dateLabel: some View {
-        Text(moment.date.asChatString())
-            .font(.callout)
-            .foregroundColor(.secondary)
     }
     
     var commentButton: some View {
@@ -88,7 +83,7 @@ struct MomentListRowView: View {
         }
     }
     
-    var commentsView: some View {
+    var likesAndCommentsButton: some View {
         HStack(spacing: 0) {
             Button {
                 addLike()
@@ -114,18 +109,37 @@ struct MomentListRowView: View {
         )
     }
     
+    var likesAndCommentsContent: some View {
+        VStack(spacing: 0) {
+            if moment.likes.count > 0 {
+                MomentLikesView(moment: moment)
+            }
+            
+            Divider()
+                .padding(.horizontal)
+            
+            if moment.comments.count > 0 {
+                MomentCommentsView(comments: moment.comments)
+            }
+        }
+        .background(.ultraThickMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+    }
+    
     func addLike() {
-        
+        isShowCommentView = false
+        momentsVM.toogleLike(profile: profileVM.myProfile, in: moment)
     }
     
     func addComment() {
-        
+        isShowCommentView = false
     }
 }
 
 struct MomentListRowView_Previews: PreviewProvider {
     static var previews: some View {
         MomentListRowView(moment: dev.momment1)
-            .frame(maxWidth: .infinity)
+            .environmentObject(ProfileViewModel())
+            .environmentObject(MomentsViewModel())
     }
 }

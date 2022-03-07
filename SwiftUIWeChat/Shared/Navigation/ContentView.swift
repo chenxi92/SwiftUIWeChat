@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Tab {
+fileprivate enum Tab {
     case chat
     case contact
     case discover
@@ -59,6 +59,7 @@ struct ContentView: View {
                 MeTabView()
                     .customTabItem(.me)
             }
+            .environmentObject(ProfileViewModel())
             .accentColor(.green)
             .navigationTitle(selection.title)
             .navigationBarTitleDisplayMode(.inline)
@@ -93,7 +94,7 @@ struct ContentView: View {
     }
 }
 
-private struct CustomTabItem: ViewModifier {
+fileprivate struct CustomTabItem: ViewModifier {
     let tab: Tab
     
     func body(content: Content) -> some View {

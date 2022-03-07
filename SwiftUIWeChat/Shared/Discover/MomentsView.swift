@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct MomentsView: View {
-    let moments: [Moment]
-    
-    init(moments: [Moment]) {
-        self.moments = Development.shared.moments
-    }
+    @EnvironmentObject var profileVM: ProfileViewModel
+    @EnvironmentObject var momentsVM: MomentsViewModel
     
     @State private var isShowMomentEditorView = false
     @State private var isShowConfirmDialog = false
@@ -20,9 +17,7 @@ struct MomentsView: View {
     var body: some View {
         VStack {
             ScrollView {
-                ForEach(moments) { moment in
-                    MomentListRowView(moment: moment)
-                    MomentListRowView(moment: moment)
+                ForEach(momentsVM.moments) { moment in
                     MomentListRowView(moment: moment)
                 }
             }
@@ -58,7 +53,8 @@ struct MomentsView: View {
 struct MomentsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MomentsView(moments: dev.moments)
+            MomentsView()
+                .environmentObject(MomentsViewModel())
                 .navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
         }

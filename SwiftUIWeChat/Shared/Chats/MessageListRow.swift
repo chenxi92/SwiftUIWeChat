@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct MessageListRow: View {
-    let iconURLString: String
-    let text: String
-    let edge: Edge
-    let width: CGFloat
+    
     let scale: CGFloat = 0.85
+    let message: Message
+    let chatProfile: Profile
+    let width: CGFloat
     @Binding var tapedMessage: DoubleTapedMessage?
+    
     @EnvironmentObject var profileVM: ProfileViewModel
+    
+    var iconURLString: String {
+        return (message.type == .receiver ? profileVM.myProfile.icon : chatProfile.icon)
+    }
+    
+    var text: String {
+        return message.text
+    }
+    
+    var edge: Edge {
+        return (message.type == .receiver ? .trailing : .leading)
+    }
+    
     
     var body: some View {
         if edge == .leading {
@@ -40,7 +54,7 @@ struct MessageListRow: View {
         HStack(alignment: .top, spacing: 0) {
             if edge == .leading {
                 NavigationLink {
-                    MessageProfileView()
+                    ProfileView(profile: chatProfile)
                 } label: {
                     AvatarView(url: URL(string: iconURLString)!)
                 }
@@ -62,7 +76,7 @@ struct MessageListRow: View {
             
             if edge == .trailing {
                 NavigationLink {
-                    MessageProfileView()
+                    ProfileView(profile: profileVM.myProfile)
                 } label: {
                     AvatarView(url: URL(string: iconURLString)!)
                 }
@@ -75,42 +89,19 @@ struct MessageListRow: View {
 
 struct MessageListRow_Previews: PreviewProvider {
     
-    static let texts: [String] = [
-        "TabView is a container view.",
-        "This week we will talk about creating tabs and pager views in SwiftUI.",
-        "TabView is a container view that puts children views into separated tabs. Let’s start with a quick example.",
-        "TabView gained superpower during WWDC20. We can now use it across all the Apple platforms to build tabbed and paged user experiences with SwiftUI out of the box.",
-        "TabView is a container view.",
-        "This week we will talk about creating tabs .",
-        "TabView is a container view that puts children views into separated tabs. Let’s start with a quick example.",
-        "TabView gained superpower during WWDC20. We can now use it across all the Apple platforms to build tabbed and paged user experiences with SwiftUI out of the box."
-    ]
-
-    static let iconURLString = ""
+    static let chat = dev.chats[0]
     
     static var previews: some View {
         GeometryReader { reader in
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(texts, id: \.self) { text in
-                        MessageListRow(
-                            iconURLString: iconURLString,
-                            text: text,
-                            edge: .leading,
-                            width: reader.size.width,
-                            tapedMessage: .constant(nil)
-                        ).environmentObject(ProfileViewModel())
-                        
-                        MessageListRow(
-                            iconURLString: iconURLString,
-                            text: text,
-                            edge: .trailing,
-                            width: reader.size.width,
-                            tapedMessage: .constant(nil)
-                        ).environmentObject(ProfileViewModel())
+                    ForEach(chat.messages.indices) { index in
+                        let message = chat.messages[index]
+                        MessageListRow(message: message, chatProfile: chat.profile, width: reader.size.width, tapedMessage: .constant(nil))
                     }
                 }
             }
+            .environmentObject(ProfileViewModel())
             .background(
                 .black.opacity(0.1)
             )

@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatsTabView: View {
     
     @StateObject var chatVM = ChatViewModel()
-    @StateObject var profileVM = ProfileViewModel()
+    @EnvironmentObject var profileVM:ProfileViewModel
     
     @Binding var isShowChatMenu: Bool
     
@@ -138,7 +138,8 @@ struct ChatsTabView: View {
 struct ChatTabView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChatsTabView(chatVM: ChatViewModel(), profileVM: ProfileViewModel(), isShowChatMenu: .constant(true))
+            ChatsTabView(chatVM: ChatViewModel(), isShowChatMenu: .constant(true))
+                .environmentObject(ProfileViewModel())
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

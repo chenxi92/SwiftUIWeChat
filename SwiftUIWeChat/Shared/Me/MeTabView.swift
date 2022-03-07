@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MeTabView: View {
-    @StateObject var profileVM = ProfileViewModel()
+    @EnvironmentObject var profileVM:ProfileViewModel
     
     var body: some View {
         GeometryReader { reader in
@@ -129,6 +129,7 @@ struct MeTabView: View {
 
 struct ProfileTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MeTabView(profileVM: ProfileViewModel())
+        MeTabView()
+            .environmentObject(ProfileViewModel())
     }
 }

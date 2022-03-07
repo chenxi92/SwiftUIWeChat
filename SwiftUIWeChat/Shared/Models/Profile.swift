@@ -12,7 +12,7 @@ enum Gender: Int, Codable, Hashable {
     case female
 }
 
-struct Profile: Codable, Hashable {
+struct Profile: Codable, Hashable, Identifiable {
     let id: UUID
     let icon: String
     let name: String

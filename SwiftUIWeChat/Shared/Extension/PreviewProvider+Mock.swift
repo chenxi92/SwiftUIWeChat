@@ -21,7 +21,7 @@ struct Development {
     let profile1: Profile = Profile(
         id: UUID(),
         icon: "https://tvax3.sinaimg.cn/crop.0.0.750.750.180/c67b8c76ly8fgbvbu2cszj20ku0kujsq.jpg",
-        name: "吃货少女侃侃",
+        name: "吃货少女",
         region: "北京 西城区",
         personalSign: nil,
         gender: .female
@@ -31,6 +31,14 @@ struct Development {
         id: UUID(),
         icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
         name: "文艺青年",
+        region: "安道尔",
+        personalSign: "", gender: .male
+    )
+    
+    let profile3: Profile = Profile(
+        id: UUID(),
+        icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
+        name: "无名氏",
         region: "安道尔",
         personalSign: "", gender: .male
     )
@@ -134,7 +142,7 @@ struct Development {
             text: "Connect with Apple experts through online sessions February 15 to March 29 to learn about the latest App Store features and get your questions answered. Find out how to create product pages that resonate best with the people you’d like to reach, provide great subscription experiences, distribute custom offer codes, and promote your in-app events. Register today if you’re a member of the Apple Developer Program.",
             images: [],
             link: nil,
-            likes: [profile1, profile2],
+            likes: [profile1, profile2, profile3],
             comments: [comment1]
         )
     }

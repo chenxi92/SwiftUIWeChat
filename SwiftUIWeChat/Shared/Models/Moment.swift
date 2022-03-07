@@ -17,8 +17,18 @@ struct Moment: Identifiable {
     let text: String?
     let images: [String]
     let link: URL?
-    let likes: [Profile]
-    let comments: [Comment]
+    var likes: [Profile]
+    var comments: [Comment]
+}
+
+extension Moment {
+    mutating func toggleLike(profile: Profile) {
+        if let index = likes.firstIndex(where: { $0.id == profile.id }) {
+            self.likes.remove(at: index)
+        } else {
+            self.likes.insert(profile, at: 0)
+        }
+    }
 }
 
 struct Comment: Identifiable {

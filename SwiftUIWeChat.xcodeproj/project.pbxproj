@@ -48,8 +48,11 @@
 		6C92539D27BFAAA4003ADCBA /* chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C92539C27BFAAA4003ADCBA /* chat.json */; };
 		6CE5B37027D1B78F0025D46C /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */; };
 		6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37127D1BD170025D46C /* LocalCache.swift */; };
-		6CE5B37627D204080025D46C /* MessageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37527D204080025D46C /* MessageProfileView.swift */; };
+		6CE5B37627D204080025D46C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37527D204080025D46C /* ProfileView.swift */; };
 		6CE5B37827D214890025D46C /* MomentEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37727D214890025D46C /* MomentEditorView.swift */; };
+		6CE5B39C27D5E3300025D46C /* MomentLikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B39B27D5E3300025D46C /* MomentLikesView.swift */; };
+		6CE5B39E27D5FC730025D46C /* MomentCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B39D27D5FC730025D46C /* MomentCommentsView.swift */; };
+		6CE5B3A027D601680025D46C /* MomentsViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B39F27D601680025D46C /* MomentsViewModels.swift */; };
 		6CFB73A527D0C0F900FC7873 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB73A427D0C0F900FC7873 /* StickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,8 +100,11 @@
 		6C92539C27BFAAA4003ADCBA /* chat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chat.json; sourceTree = "<group>"; };
 		6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		6CE5B37127D1BD170025D46C /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
-		6CE5B37527D204080025D46C /* MessageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageProfileView.swift; sourceTree = "<group>"; };
+		6CE5B37527D204080025D46C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6CE5B37727D214890025D46C /* MomentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentEditorView.swift; sourceTree = "<group>"; };
+		6CE5B39B27D5E3300025D46C /* MomentLikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentLikesView.swift; sourceTree = "<group>"; };
+		6CE5B39D27D5FC730025D46C /* MomentCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentsView.swift; sourceTree = "<group>"; };
+		6CE5B39F27D601680025D46C /* MomentsViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsViewModels.swift; sourceTree = "<group>"; };
 		6CFB73A427D0C0F900FC7873 /* StickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +126,7 @@
 				6C86BD7F27C390F50055FF3F /* CachedAsyncImage.swift */,
 				6C86BD8F27C5EADB0055FF3F /* BackButton.swift */,
 				6C86BD9327C6138E0055FF3F /* CustomLinkRow.swift */,
+				6CE5B37527D204080025D46C /* ProfileView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -151,6 +158,7 @@
 				6C92538D27BF5787003ADCBA /* ChatViewModel.swift */,
 				6C86BD9127C60A050055FF3F /* ContactsViewModel.swift */,
 				6C86BD8727C4CF600055FF3F /* ProfileViewModel.swift */,
+				6CE5B39F27D601680025D46C /* MomentsViewModels.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -224,12 +232,11 @@
 				6C92538227BF41BC003ADCBA /* ChatsTabView.swift */,
 				6C92538F27BF58FD003ADCBA /* ChatListRow.swift */,
 				6C92539327BF9227003ADCBA /* MessageListView.swift */,
+				6C86BD8127C4BC610055FF3F /* MessageListRow.swift */,
 				6CFB73A427D0C0F900FC7873 /* StickerView.swift */,
 				6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */,
-				6C86BD8127C4BC610055FF3F /* MessageListRow.swift */,
 				6C86BD8527C4CA900055FF3F /* MessageDoubleTapView.swift */,
 				15C761BE27C289E30045DC13 /* MessageDetailView.swift */,
-				6CE5B37527D204080025D46C /* MessageProfileView.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -248,6 +255,8 @@
 				6C92538427BF41C7003ADCBA /* DiscoverTabView.swift */,
 				15C761C027C536810045DC13 /* MomentsView.swift */,
 				6C3E082827C63AB400AC21BC /* MomentListRowView.swift */,
+				6CE5B39B27D5E3300025D46C /* MomentLikesView.swift */,
+				6CE5B39D27D5FC730025D46C /* MomentCommentsView.swift */,
 				6CE5B37727D214890025D46C /* MomentEditorView.swift */,
 				15C761C227C536970045DC13 /* ChannelsView.swift */,
 				15C761C427C5369E0045DC13 /* LiveView.swift */,
@@ -381,10 +390,12 @@
 				6C92538327BF41BC003ADCBA /* ChatsTabView.swift in Sources */,
 				6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */,
 				6CFB73A527D0C0F900FC7873 /* StickerView.swift in Sources */,
-				6CE5B37627D204080025D46C /* MessageProfileView.swift in Sources */,
+				6CE5B39C27D5E3300025D46C /* MomentLikesView.swift in Sources */,
+				6CE5B37627D204080025D46C /* ProfileView.swift in Sources */,
 				15C761C127C536810045DC13 /* MomentsView.swift in Sources */,
 				6C86BD8427C4C1CA0055FF3F /* Profile.swift in Sources */,
 				15C761CB27C536C00045DC13 /* NearbyView.swift in Sources */,
+				6CE5B3A027D601680025D46C /* MomentsViewModels.swift in Sources */,
 				6C86BD9027C5EADB0055FF3F /* BackButton.swift in Sources */,
 				6C92539427BF9227003ADCBA /* MessageListView.swift in Sources */,
 				15C761C727C536A80045DC13 /* TopStoriesView.swift in Sources */,
@@ -405,6 +416,7 @@
 				6C86BD8B27C4E0210055FF3F /* Message.swift in Sources */,
 				6C86BD8027C390F50055FF3F /* CachedAsyncImage.swift in Sources */,
 				6C86BD8627C4CA900055FF3F /* MessageDoubleTapView.swift in Sources */,
+				6CE5B39E27D5FC730025D46C /* MomentCommentsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

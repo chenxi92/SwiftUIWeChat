@@ -152,13 +152,8 @@ struct MessageListView: View {
     private func getMessageView(viewWidth: CGFloat) -> some View {
         LazyVGrid(columns: columns, spacing: 0) {
             ForEach(chat.messages) { message in
-                MessageListRow(
-                    iconURLString: message.type == .receiver ? profileVM.myProfile.icon : chat.profile.icon,
-                    text: message.text,
-                    edge: message.type == .receiver ? .trailing : .leading,
-                    width: viewWidth,
-                    tapedMessage: $tapedMessage
-                ).padding(.bottom)
+                MessageListRow(message: message, chatProfile: chat.profile, width: viewWidth, tapedMessage: $tapedMessage)
+                    .padding(.bottom)
             }
         }
     }
