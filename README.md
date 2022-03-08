@@ -10,7 +10,8 @@ A demo to simulate WeChat, only use SwiftUI.
 - [Reduce spacing between sections SwiftUI](https://stackoverflow.com/a/62186463/5972156)
 
 - [Globally Reduce spacing between sections SwiftUI](https://stackoverflow.com/a/68396510/5972156)
- 
+
+
 
 ## Hiden navigation link Arrow
 
@@ -24,3 +25,11 @@ ZStack(alignment: .leading) {
     .opacity(0)
 }
 ```
+
+
+
+## FlexibleView
+
+- [Flexible layout in SwiftUI](https://www.fivestars.blog/articles/flexible-swiftui/)
+
+- [How to read a view size in SwiftUI](https://www.fivestars.blog/articles/swiftui-share-layout-information/)
