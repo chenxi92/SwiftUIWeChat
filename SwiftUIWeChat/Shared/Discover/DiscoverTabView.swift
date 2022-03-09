@@ -83,7 +83,8 @@ struct DiscoverTabView: View {
                 }
             }
         }
-        .listStyle(.grouped)
+        .listStyle(.plain)
+        .listSectionSeparator(.hidden)
     }
 }
 
@@ -159,8 +160,11 @@ extension DiscoverTabView {
 
 struct DiscoverTabView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoverTabView()
-            .environmentObject(ProfileViewModel())
-            .environmentObject(MomentsViewModel())
+        NavigationView {
+            DiscoverTabView()
+                .navigationBarTitleDisplayMode(.inline)
+                .environmentObject(ProfileViewModel())
+                .environmentObject(MomentsViewModel())
+        }
     }
 }
