@@ -15,6 +15,7 @@ import SwiftUI
 
 struct DiscoverTabView: View {
     @EnvironmentObject var profileVM: ProfileViewModel
+    @EnvironmentObject var momentsVM: MomentsViewModel
     
     var body: some View {
         List {
@@ -22,7 +23,7 @@ struct DiscoverTabView: View {
                 NavigationLink {
                     MomentsView()
                         .environmentObject(profileVM)
-                        .environmentObject(MomentsViewModel())
+                        .environmentObject(momentsVM)
                 } label: {
                     momentRow
                 }
@@ -159,5 +160,7 @@ extension DiscoverTabView {
 struct DiscoverTabView_Previews: PreviewProvider {
     static var previews: some View {
         DiscoverTabView()
+            .environmentObject(ProfileViewModel())
+            .environmentObject(MomentsViewModel())
     }
 }

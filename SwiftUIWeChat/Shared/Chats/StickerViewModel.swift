@@ -10,7 +10,7 @@ import SwiftUI
 
 class StickerViewModel: ObservableObject {
     
-    @LocalCache("xxx", wrappedValue: [])
+    @LocalCache("recentUsedStickers", wrappedValue: [])
     var recentUsedStickers: [String]
     
     let allStickers: [String] = [

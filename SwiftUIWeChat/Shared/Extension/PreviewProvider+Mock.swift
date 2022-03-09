@@ -19,7 +19,7 @@ struct Development {
     private init() {}
     
     let profile1: Profile = Profile(
-        id: UUID(),
+        id: UUID().uuidString,
         icon: "https://tvax3.sinaimg.cn/crop.0.0.750.750.180/c67b8c76ly8fgbvbu2cszj20ku0kujsq.jpg",
         name: "吃货少女",
         region: "北京 西城区",
@@ -28,7 +28,7 @@ struct Development {
     )
     
     let profile2: Profile = Profile(
-        id: UUID(),
+        id: UUID().uuidString,
         icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
         name: "文艺青年",
         region: "安道尔",
@@ -36,7 +36,7 @@ struct Development {
     )
     
     let profile3: Profile = Profile(
-        id: UUID(),
+        id: UUID().uuidString,
         icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
         name: "无名氏",
         region: "安道尔",
@@ -119,10 +119,10 @@ struct Development {
     }
     
     let contacts: [Profile] = [
-        Profile(id: UUID(), icon: "emoji-1", name: "ATest1", region: "中国", personalSign: nil, gender: .male),
-        Profile(id: UUID(), icon: "emoji-3", name: "ATest2", region: "北京", personalSign: "xxx", gender: .female),
-        Profile(id: UUID(), icon: "emoji-5", name: "CTest", region: "美国", personalSign: nil, gender: .male),
-        Profile(id: UUID(), icon: "emoji-7", name: "DTest1", region: "朝鲜", personalSign: nil, gender: .female)
+        Profile(id: UUID().uuidString, icon: "emoji-1", name: "ATest1", region: "中国", personalSign: nil, gender: .male),
+        Profile(id: UUID().uuidString, icon: "emoji-3", name: "ATest2", region: "北京", personalSign: "xxx", gender: .female),
+        Profile(id: UUID().uuidString, icon: "emoji-5", name: "CTest", region: "美国", personalSign: nil, gender: .male),
+        Profile(id: UUID().uuidString, icon: "emoji-7", name: "DTest1", region: "朝鲜", personalSign: nil, gender: .female)
     ]
     
     var likes1: [Profile]  {

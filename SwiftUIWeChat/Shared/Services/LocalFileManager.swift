@@ -36,6 +36,27 @@ class LocalFileManager {
         return UIImage(contentsOfFile: url.path)
     }
     
+    func saveData(data: Data, fileName: String, folderName: String) {
+        createFolderIfNeeded(folderName: folderName)
+        
+        guard let url = getURLForData(fileName: fileName, folderName: folderName) else {
+            return
+        }
+        
+        do {
+            try data.write(to: url)
+        } catch {
+            print("Error saving data. \(error)")
+        }
+    }
+    
+    func getData(fileName: String, folderName: String) -> Data? {
+        guard let url = getURLForData(fileName: fileName, folderName: folderName), FileManager.default.fileExists(atPath: url.path) else {
+            return nil
+        }
+        return try? Data(contentsOf: url)
+    }
+    
     // MARK: Private
     
     private func createFolderIfNeeded(folderName: String) {
@@ -64,5 +85,10 @@ class LocalFileManager {
             return nil
         }
         return folderURL.appendingPathComponent(imageName + ".png")
+    }
+    
+    private func getURLForData(fileName: String, folderName: String) -> URL? {
+        guard let folderURL = getURLForFolder(folderName: folderName), !fileName.isEmpty else { return nil }
+        return folderURL.appendingPathComponent(fileName)
     }
 }

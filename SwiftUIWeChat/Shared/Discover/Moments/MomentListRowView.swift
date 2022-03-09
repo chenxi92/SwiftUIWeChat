@@ -12,19 +12,31 @@ struct MomentListRowView: View {
     @EnvironmentObject var momentsVM: MomentsViewModel
     
     let moment: Moment
+    
     @State private var isShowCommentView = false
+    @State private var isShowCommentField = false
+    @State private var comment: String = ""
+    @FocusState private var isFocused
     
     var body: some View {
-        HStack(alignment: .top) {
-            AvatarView(url: URL(string: moment.profile.icon)!)
-            
-            VStack(alignment: .leading) {
-                nameLabel
-                content
-                bottomView
-                likesAndCommentsContent
+        VStack (alignment: .leading, spacing: 5) {
+            HStack(alignment: .top) {
+                AvatarView(url: URL(string: moment.profile.icon)!)
+                
+                VStack(alignment: .leading) {
+                    name
+                    content
+                    dateRow
+                    likesAndCommentsContent
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            
+            Divider().padding(.horizontal)
+            
+            if isShowCommentField {
+               commentField
+            }
         }
         .onTapGesture {
             withAnimation {
@@ -32,8 +44,30 @@ struct MomentListRowView: View {
             }
         }
     }
+
+    func onLikeButtonPress() {
+        isShowCommentView = false
+        isShowCommentField = false
+        momentsVM.toogleLike(profile: profileVM.myProfile, in: moment)
+    }
     
-    var nameLabel: some View {
+    func onCommentButtonPress() {
+        isShowCommentView = false
+        isShowCommentField = true
+        isFocused = true
+    }
+    
+    func sendComment() {
+        momentsVM.addComment(text: comment, moment: moment, profile: profileVM.myProfile)
+        isFocused = false
+        isShowCommentField = false
+        comment = ""
+    }
+}
+
+extension MomentListRowView {
+    
+    var name: some View {
         Text(moment.profile.name)
             .font(.system(size: 18, weight: .heavy))
             .foregroundColor(.blue)
@@ -50,7 +84,7 @@ struct MomentListRowView: View {
         }
     }
     
-    var bottomView: some View {
+    var dateRow: some View {
         HStack {
             Text(moment.date.asChatString())
                 .font(.callout)
@@ -60,33 +94,31 @@ struct MomentListRowView: View {
 
             HStack(spacing: 2) {
                 Spacer()
+                
                 if isShowCommentView {
                     likesAndCommentsButton
                 }
-                commentButton
+                
+                Button {
+                    withAnimation {
+                        isShowCommentView.toggle()
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .foregroundColor(.primary)
+                        .padding(10)
+                        .background(Color.black.opacity(0.05))
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .padding(.vertical)
+                }
             }
-        }
-    }
-    
-    var commentButton: some View {
-        Button {
-            withAnimation {
-                isShowCommentView.toggle()
-            }
-        } label: {
-            Image(systemName: "ellipsis")
-                .foregroundColor(.primary)
-                .padding(10)
-                .background(Color.black.opacity(0.05))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .padding(.vertical)
         }
     }
     
     var likesAndCommentsButton: some View {
         HStack(spacing: 0) {
             Button {
-                addLike()
+                onLikeButtonPress()
             } label: {
                 Label("赞", systemImage: "heart")
                     .padding(10)
@@ -95,7 +127,7 @@ struct MomentListRowView: View {
             }
             
             Button {
-                addComment()
+                onCommentButtonPress()
             } label: {
                 Label("评论", systemImage: "message")
                     .padding(10)
@@ -105,34 +137,43 @@ struct MomentListRowView: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 5))
         .transition(
-            AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .opacity)
+            AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .scale)
         )
     }
     
     var likesAndCommentsContent: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 5) {
             if moment.likes.count > 0 {
                 MomentLikesView(moment: moment)
             }
-            
-            Divider()
-                .padding(.horizontal)
-            
             if moment.comments.count > 0 {
+                Divider().padding(.horizontal)
                 MomentCommentsView(comments: moment.comments)
             }
         }
+        .padding(5)
         .background(.ultraThickMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 5))
     }
     
-    func addLike() {
-        isShowCommentView = false
-        momentsVM.toogleLike(profile: profileVM.myProfile, in: moment)
-    }
-    
-    func addComment() {
-        isShowCommentView = false
+    var commentField: some View {
+        HStack(spacing: 5) {
+            TextField("", text: $comment, prompt: Text("Comment"))
+                .frame(maxWidth: .infinity)
+                .padding(5)
+                .textFieldStyle(.roundedBorder)
+                .focused($isFocused)
+                .onSubmit {
+                    sendComment()
+                }
+            
+            Image(systemName: "face.smiling")
+                .resizable()
+                .frame(width: 35, height: 35)
+                .foregroundColor(.primary)
+        }
+        .padding(.horizontal, 5)
+        .background(Color.black.opacity(0.15))
     }
 }
 

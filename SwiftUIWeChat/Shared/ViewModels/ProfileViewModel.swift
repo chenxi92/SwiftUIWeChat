@@ -14,7 +14,7 @@ class ProfileViewModel: ObservableObject {
     
     init() {
         myProfile = Profile(
-            id: UUID(),
+            id: "wxs_1234567x",
             icon: "https://tvax3.sinaimg.cn/crop.0.0.996.996.180/007bF1bmly8gw5muzf5y6j30ro0rodh0.jpg",
             name: "陈希",
             region: "中国 北京",

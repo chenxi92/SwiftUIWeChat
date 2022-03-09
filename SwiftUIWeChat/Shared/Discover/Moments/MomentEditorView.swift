@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MomentEditorView: View {
+    @EnvironmentObject var profileVM: ProfileViewModel
+    @EnvironmentObject var momentsVM: MomentsViewModel
+    
     @Environment(\.dismiss) var dismiss
     
     @FocusState private var focus: Bool
@@ -17,70 +20,14 @@ struct MomentEditorView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                TextEditor(text: $text)
-                    .lineSpacing(5)
-                    .foregroundColor(.primary)
-                    .background(Color.blue)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 150)
-                    .focused($focus)
-                
+                postContent
                 Divider().padding(.horizontal)
-                
-                NavigationLink {
-                    VStack {
-                        Text("add location")
-                    }
-                } label: {
-                    HStack {
-                        Image(systemName: "location")
-                            .padding(.trailing)
-                        Text("Location")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                    .foregroundColor(.primary)
-                    .padding()
-                }
+                location
                 Divider().padding(.horizontal)
-                
-                NavigationLink {
-                    VStack {
-                        Text("add location")
-                    }
-                } label: {
-                    HStack {
-                        Image(systemName: "infinity")
-                            .padding(.trailing)
-                        Text("Mention")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                    .foregroundColor(.primary)
-                    .padding()
-                }
+                mention
                 Divider().padding(.horizontal)
-                
-                NavigationLink {
-                    VStack {
-                        Text("add location")
-                    }
-                } label: {
-                    HStack {
-                        Image(systemName: "person")
-                            .padding(.trailing)
-                        Text("Visible To")
-                        Spacer()
-                        Text("All")
-                        Image(systemName: "chevron.right")
-                    }
-                    .foregroundColor(.primary)
-                    .padding()
-                }
-
+                visible
                 Divider().padding(.horizontal)
-
             }
             .navigationTitle("Text")
             .navigationBarTitleDisplayMode(.inline)
@@ -92,6 +39,73 @@ struct MomentEditorView: View {
                 focus = true
             }
         }
+    }
+    
+    var postContent: some View {
+        TextEditor(text: $text)
+            .lineSpacing(5)
+            .foregroundColor(.primary)
+            .background(Color.blue)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .frame(height: 150)
+            .focused($focus)
+    }
+    
+    var location: some View {
+        NavigationLink {
+            VStack {
+                Text("add location")
+            }
+        } label: {
+            HStack {
+                Image(systemName: "location")
+                    .padding(.trailing)
+                Text("Location")
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            .foregroundColor(.primary)
+            .padding()
+        }
+    }
+    
+    var mention: some View {
+        NavigationLink {
+            VStack {
+                Text("add location")
+            }
+        } label: {
+            HStack {
+                Image(systemName: "infinity")
+                    .padding(.trailing)
+                Text("Mention")
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            .foregroundColor(.primary)
+            .padding()
+        }
+    }
+    
+    var visible: some View {
+        NavigationLink {
+            VStack {
+                Text("add location")
+            }
+        } label: {
+            HStack {
+                Image(systemName: "person")
+                    .padding(.trailing)
+                Text("Visible To")
+                Spacer()
+                Text("All")
+                Image(systemName: "chevron.right")
+            }
+            .foregroundColor(.primary)
+            .padding()
+        }
+
     }
     
     @ToolbarContentBuilder
@@ -108,7 +122,7 @@ struct MomentEditorView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button {
                 // send post
-                
+                sendPost()
                 dismiss()
             } label: {
                 Text("Post")
@@ -121,10 +135,16 @@ struct MomentEditorView: View {
             .disabled(text.isEmpty)
         }
     }
+    
+    func sendPost() {
+        momentsVM.addPost(text: text, profile: profileVM.myProfile)
+    }
 }
 
 struct MomentEditorView_Previews: PreviewProvider {
     static var previews: some View {
         MomentEditorView()
+            .environmentObject(MomentsViewModel())
+            .environmentObject(ProfileViewModel())
     }
 }

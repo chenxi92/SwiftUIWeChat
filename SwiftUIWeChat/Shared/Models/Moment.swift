@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Moment: Identifiable {
+struct Moment: Identifiable, Codable {
     var id: String {
-        return profile.id.uuidString + date.debugDescription
+        return profile.id + date.debugDescription
     }
     
     let profile: Profile
@@ -31,11 +31,17 @@ extension Moment {
     }
 }
 
-struct Comment: Identifiable {
+extension Moment {
+    static func createMoment(text: String, profile: Profile) -> Moment {
+        return Moment(profile: profile, date: .now, text: text, images: [], link: nil, likes: [], comments: [])
+    }
+}
+
+struct Comment: Identifiable, Codable {
     let profile: Profile
     let text: String
     
     var id: String {
-        return profile.id.uuidString + text
+        return profile.id + text
     }
 }

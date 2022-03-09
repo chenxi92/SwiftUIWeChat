@@ -11,22 +11,26 @@ struct MomentCommentsView: View {
     let comments: [Comment]
     
     var body: some View {
-        ForEach(comments) { comment in
-            HStack {
-                NavigationLink {
-                    ProfileView(profile: comment.profile)
-                } label: {
-                    Text("\(comment.profile.name):")
-                        .font(.system(.body, design: .monospaced))
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                        .padding(.leading, 5)
-                }
-
-                Text(comment.text)
-                Spacer()
+        VStack(spacing: 5) {
+            ForEach(comments) { comment in
+                commentRow(comment: comment)
             }
-            .padding(.vertical, 8)
+        }
+    }
+    
+    func commentRow(comment: Comment) -> some View {
+        HStack {
+            NavigationLink {
+                ProfileView(profile: comment.profile)
+            } label: {
+                Text("\(comment.profile.name):")
+                    .font(.system(.body, design: .monospaced))
+                    .fontWeight(.bold)
+                    .foregroundColor(.blue)
+                    .padding(.leading, 5)
+            }
+            Text(comment.text)
+            Spacer()
         }
     }
 }

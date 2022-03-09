@@ -13,7 +13,7 @@ enum Gender: Int, Codable, Hashable {
 }
 
 struct Profile: Codable, Hashable, Identifiable {
-    let id: UUID
+    let id: String
     let icon: String
     let name: String
     let region: String
