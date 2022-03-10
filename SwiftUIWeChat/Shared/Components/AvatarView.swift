@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AvatarView: View {
     let url: URL
+    var height: CGFloat = 44
+    var width: CGFloat = 44
     
     var body: some View {
         
@@ -19,7 +21,7 @@ struct AvatarView: View {
             case .success(let image):
                 image
                     .resizable()
-                    .frame(width: 44, height: 44)
+                    .frame(width: width, height: height)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .transition(.scale(scale: 0.4, anchor: .center))
             case .failure:

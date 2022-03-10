@@ -42,7 +42,7 @@ struct MomentsView: View {
                     Spacer()
                 }
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(.all, edges: .top)
         }
         .fullScreenCover(isPresented: $isShowMomentEditorView, onDismiss: { isShowConfirmDialog = false }) {
             MomentEditorView()
@@ -73,24 +73,6 @@ struct MomentsView: View {
             isShowMomentEditorView: $isShowMomentEditorView
         ).frame(height: height)
     }
-    
-    @ToolbarContentBuilder
-    func toolbars() -> some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
-            BackButton()
-        }
-        
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Image(systemName: "camera.fill")
-                .foregroundColor(.primary)
-                .onTapGesture {
-                    isShowConfirmDialog = true
-                }
-                .onLongPressGesture {
-                    isShowMomentEditorView = true
-                }
-        }
-    }
 }
 
 struct Header: View {
@@ -110,18 +92,23 @@ struct Header: View {
                     .frame(height: 20)
             }
             
-            HStack {
+            HStack(spacing: 5) {
                 Spacer()
+                
                 Text(profileVM.myProfile.name)
                     .foregroundColor(.white)
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.title2)
+                    .fontWeight(.bold)
                     .shadow(radius: 2)
                 
-                AvatarView(url: URL(string: profileVM.myProfile.icon)!)
-                    .frame(width: 70, height: 70)
+                NavigationLink {
+                    ProfileView(profile: profileVM.myProfile)
+                } label: {
+                    AvatarView(url: URL(string: profileVM.myProfile.icon)!, height: 65, width: 65)
+                }
             }
-            .padding(.trailing, 10)
-            .padding(.vertical, 5)
+            .padding(.trailing)
+            .padding(.bottom, 12)
         }
     }
 }
@@ -136,13 +123,15 @@ struct CustomNavigationBarView: View {
     var body: some View {
         ZStack (alignment: .bottom) {
             Rectangle()
-                .foregroundColor(Color.gray.opacity(0.7).opacity(progress))
+                .background(.regularMaterial)
+                .opacity(progress)
+                .foregroundColor(Color.gray.opacity(0.5).opacity(progress))
             
             HStack {
                 BackButton()
                 Spacer()
                 Image(systemName: progress > 0.4 ? "camera" : "camera.fill")
-                    .foregroundColor(.primary)
+                    .foregroundColor( progress > 0.4 ? .primary : .white)
                     .onTapGesture {
                         isShowConfirmDialog = true
                     }

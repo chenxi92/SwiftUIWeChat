@@ -29,15 +29,16 @@ struct MomentListRowView: View {
                     dateRow
                     likesAndCommentsContent
                 }
-                .padding(.horizontal)
+                .padding(.leading)
             }
             
-            Divider().padding(.horizontal)
+            Divider().padding(.vertical)
             
             if isShowCommentField {
                commentField
             }
         }
+        .padding(.horizontal)
         .onTapGesture {
             withAnimation {
                 isShowCommentView = false
@@ -146,8 +147,10 @@ extension MomentListRowView {
             if moment.likes.count > 0 {
                 MomentLikesView(moment: moment)
             }
+            if !moment.likes.isEmpty && !moment.comments.isEmpty {
+                Divider()
+            }
             if moment.comments.count > 0 {
-                Divider().padding(.horizontal)
                 MomentCommentsView(comments: moment.comments)
             }
         }
