@@ -34,6 +34,7 @@
 		6C86BD9027C5EADB0055FF3F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C86BD8F27C5EADB0055FF3F /* BackButton.swift */; };
 		6C86BD9227C60A050055FF3F /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C86BD9127C60A050055FF3F /* ContactsViewModel.swift */; };
 		6C86BD9427C6138E0055FF3F /* CustomLinkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C86BD9327C6138E0055FF3F /* CustomLinkRow.swift */; };
+		6C8FAB4327DA0E6A00DE001E /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8FAB4227DA0E6A00DE001E /* MyProfileView.swift */; };
 		6C92536B27BF40DA003ADCBA /* SwiftUIWeChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C92536A27BF40DA003ADCBA /* SwiftUIWeChatApp.swift */; };
 		6C92536D27BF40DA003ADCBA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C92536C27BF40DA003ADCBA /* ContentView.swift */; };
 		6C92536F27BF40DD003ADCBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C92536E27BF40DD003ADCBA /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		6C86BD8F27C5EADB0055FF3F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		6C86BD9127C60A050055FF3F /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		6C86BD9327C6138E0055FF3F /* CustomLinkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinkRow.swift; sourceTree = "<group>"; };
+		6C8FAB4227DA0E6A00DE001E /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		6C92536727BF40DA003ADCBA /* SwiftUIWeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIWeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C92536A27BF40DA003ADCBA /* SwiftUIWeChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWeChatApp.swift; sourceTree = "<group>"; };
 		6C92536C27BF40DA003ADCBA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				6C92538627BF41D1003ADCBA /* MeTabView.swift */,
+				6C8FAB4227DA0E6A00DE001E /* MyProfileView.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				6C92538327BF41BC003ADCBA /* ChatsTabView.swift in Sources */,
 				6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */,
 				6CFB73A527D0C0F900FC7873 /* StickerView.swift in Sources */,
+				6C8FAB4327DA0E6A00DE001E /* MyProfileView.swift in Sources */,
 				6CE5B39C27D5E3300025D46C /* MomentLikesView.swift in Sources */,
 				6CE5B37627D204080025D46C /* ProfileView.swift in Sources */,
 				15C761C127C536810045DC13 /* MomentsView.swift in Sources */,

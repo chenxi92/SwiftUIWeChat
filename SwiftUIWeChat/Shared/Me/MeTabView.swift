@@ -8,128 +8,174 @@
 import SwiftUI
 
 struct MeTabView: View {
-    @EnvironmentObject var profileVM:ProfileViewModel
+    @EnvironmentObject var profileVM: ProfileViewModel
     
     var body: some View {
-        GeometryReader { reader in
-            Color(UIColor.systemGroupedBackground)
-            
-            VStack {
-                NavigationLink {
-                    Text("xx")
-                } label: {
-                    header
-                        .frame(maxWidth: reader.size.width)
-                }
+        ScrollView {
+            header
+            spacerRow
+            listContent
+        }
+    }
+}
 
-               listContent
-            }
-            .foregroundColor(.primary)
+extension MeTabView {
+    
+    var header: some View {
+        NavigationLink {
+            MyProfileView()
+        } label: {
+            headContent
+                .foregroundColor(.primary)
         }
     }
     
-    var header: some View {
-        HStack(alignment: .center) {
-            AvatarView(url: URL(string: profileVM.myProfile.icon)!)
-                .padding(.horizontal)
+    var headContent: some View {
+        HStack(alignment: .bottom) {
+            AvatarView(url: URL(string: profileVM.myProfile.icon)!, height: 70, width: 70)
+                .padding(.trailing, 10)
 
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
                     Text(profileVM.myProfile.name)
-                        .font(.title2)
+                        .font(.title3)
                     Spacer()
                 }
-                
-                HStack {
-                    Text("微信号: chenxi11111")
-                        .font(.caption)
-                    
+                HStack(spacing: 0) {
+                    Text("微信号: \(profileVM.myProfile.id)")
+                        .font(.body)
                     Spacer()
-                    
                     Image(systemName: "qrcode")
-                    
+                        .padding(.trailing, 8)
+
                     Image(systemName: "chevron.right")
-                        .resizable()
-                        .frame(width: 8, height: 10)
+                        .offset(x: 7)
                         .foregroundColor(.secondary)
-                        .padding(.leading)
                 }
             }
-            .padding()
-            
             Spacer()
         }
-        .padding(.vertical)
+        .padding(.horizontal)
         .padding(.top)
-        .background(Color.white)
+        .padding(.top)
+    }
+    
+    var spacerRow: some View {
+        Color.clear
+            .background(.ultraThickMaterial)
+            .frame(maxWidth: .infinity)
+            .frame(height: 15)
     }
     
     var listContent: some View {
-        List {
-            Section {
-                staticRow(systemName: "message", foregroundColor: .green, text: "服务") {
-                    List(0 ..< 5) { item in
-                        Text("服务")
-                    }
+        Group {
+            firstSection
+            sectionSection
+            thirdSection
+        }
+    }
+    
+    var firstSection: some View {
+        Group {
+            NavigationLink {
+                List(0 ..< 5) { item in
+                    Text("服务")
                 }
+            } label: {
+                rowContent(systemName: "message", foregroundColor: .green, text: "服务")
+            }
+            spacerRow
+        }
+    }
+    
+    var sectionSection: some View {
+        Group {
+            NavigationLink {
+                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    Text("收藏")
+                }
+            } label: {
+                rowContent(systemName: "cube", foregroundColor: .mint, text: "收藏")
+            }
+            Divider()
+            
+            NavigationLink {
+                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    Text("收藏")
+                }
+            } label: {
+                rowContent(systemName: "photo", foregroundColor: .pink, text: "朋友圈")
+            }
+            Divider()
+            
+            NavigationLink {
+                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    Text("收藏")
+                }
+            } label: {
+                rowContent(systemName: "play.circle", foregroundColor: .yellow, text: "视频号")
+            }
+            Divider()
+            
+            NavigationLink {
+                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    Text("收藏")
+                }
+            } label: {
+                rowContent(systemName: "menucard", foregroundColor: .cyan, text: "卡包")
+            }
+            Divider()
+            
+            NavigationLink {
+                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    Text("收藏")
+                }
+            } label: {
+                rowContent(systemName: "face.smiling", foregroundColor: .blue, text: "表情")
             }
             
-            Section {
-                staticRow(systemName: "cube", foregroundColor: .mint, text: "收藏") {
-                    List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                        Text("收藏")
-                    }
+            spacerRow
+        }
+    }
+    
+    var thirdSection: some View {
+        Group {
+            NavigationLink {
+                List(0 ..< 5) { item in
+                    Text("收藏")
                 }
-                staticRow(systemName: "photo", foregroundColor: .pink, text: "朋友圈") {
-                    Text("朋友圈")
-                }
-                staticRow(systemName: "play.circle", foregroundColor: .yellow, text: "视频号") {
-                    Text("视频号")
-                }
-                staticRow(systemName: "menucard", foregroundColor: .cyan, text: "卡包") {
-                    Text("卡包")
-                }
-                staticRow(systemName: "face.smiling", foregroundColor: .blue, text: "表情") {
-                    Text("表情")
-                }
-            }
-            
-            Section {
-                staticRow(systemName: "gearshape", foregroundColor: .blue, text: "设置") {
-                    Text("设置")
-                }
+            } label: {
+                rowContent(systemName: "gearshape", foregroundColor: .blue, text: "设置")
             }
         }
-        .listStyle(.grouped)
     }
-
-    func staticRow<T: View>(
-        systemName: String,
-        foregroundColor: Color,
-        text: String,
-        destination: () -> T) -> some View {
-        
-        return NavigationLink {
-            destination()
-        } label: {
-            HStack(spacing: 0) {
-                Image(systemName: systemName)
-                    .foregroundColor(foregroundColor)
-                    .padding(.horizontal)
-                
-                Text(text)
-                    .foregroundColor(.primary)
-                
-                Spacer()
-            }
+    
+    func rowContent(systemName: String, foregroundColor: Color, text: String) -> some View {
+        HStack(spacing: 0) {
+            Image(systemName: systemName)
+                .foregroundColor(foregroundColor)
+                .padding(.horizontal)
+            Text(text)
+                .foregroundColor(.primary)
+            Spacer()
+            Image(systemName: "chevron.right")
+                .foregroundColor(.primary)
         }
-
+        .font(.title3)
+        .padding(.vertical, 9)
+        .padding(.horizontal)
     }
+    
+    
 }
 
-struct ProfileTabView_Previews: PreviewProvider {
+struct MeTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MeTabView()
-            .environmentObject(ProfileViewModel())
+        NavigationView {
+            MeTabView()
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
+                .environmentObject(ProfileViewModel())
+        }
     }
 }
