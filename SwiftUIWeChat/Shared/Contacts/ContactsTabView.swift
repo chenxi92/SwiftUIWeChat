@@ -10,37 +10,70 @@ import SwiftUI
 struct ContactsTabView: View {
     
     @State private var isAddContacts: Bool = false
+    @EnvironmentObject var contactsVM: ContactsViewModel
     
     var body: some View {
-        List {
-            ForEach(Development.shared.contacts, id: \.self) { profile in
-                contactListRow(profile: profile)
+        VStack {            
+            List {
+                ForEach(contactsVM.filterContacts) { contact in
+                    Section(header: ContactSectionHeader(title: contact.title)) {
+                        ForEach(contact.contacts) { profile in
+                            contactRow(profile: profile)
+                        }
+                    }
+                }
+                .listRowSeparator(.hidden, edges: .all)
+                .listRowInsets(.none)
+                .listSectionSeparator(.hidden)
             }
+            .listStyle(.plain)
         }
-        .listStyle(.plain)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
-    func contactListRow(profile: Profile) -> some View {
+    func contactRow(profile: Profile) -> some View {
         CustomLinkRow {
             HStack {
-                Image(profile.icon)
-                    .resizable()
-                    .frame(width: 44, height: 44, alignment: .leading)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .padding(.horizontal, 10)
+                AvatarView(url: URL(string: profile.icon)!, height: 40, width: 40)
                 
                 Text(profile.name)
-                    .font(.body)
+                    .font(.system(size: 16))
+                    .foregroundColor(.primary)
+                
+                Spacer()
             }
+            .frame(maxWidth: .infinity)
+
         } destination: {
-            Text("xxx")
+            ProfileView(profile: profile)
         }
     }
 }
 
+struct ContactSectionHeader: View {
+    let title: String
+    
+    var body: some View {
+        ZStack(alignment: .leading) {
+            Color.clear.background(.ultraThinMaterial)
+                .frame(maxWidth: .infinity)
+            
+            Text(title)
+                .font(.title3)
+                .fontWeight(.bold)
+                .foregroundColor(.secondary)
+                .padding(5)
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
 
 struct ContactTabView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsTabView()
+        NavigationView {
+            ContactsTabView()
+                .navigationBarTitleDisplayMode(.inline)
+        }
+        .environmentObject(ContactsViewModel())
     }
 }

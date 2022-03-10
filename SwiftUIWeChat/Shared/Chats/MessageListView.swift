@@ -40,6 +40,7 @@ struct MessageListView: View {
         }
         .background(.thinMaterial)
         .navigationTitle(chat.profile.name)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             toolbarButtons()
         }
@@ -137,7 +138,12 @@ struct MessageListView: View {
         .background(.thickMaterial)
     }
     
+    @ToolbarContentBuilder
     private func toolbarButtons() -> some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            BackButton()
+        }
+        
         ToolbarItem(placement: .navigationBarTrailing) {
             NavigationLink {
                 MessageDetailView(chat: chat)

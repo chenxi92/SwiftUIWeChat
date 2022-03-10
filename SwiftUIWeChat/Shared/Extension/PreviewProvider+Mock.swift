@@ -19,16 +19,16 @@ struct Development {
     private init() {}
     
     let profile1: Profile = Profile(
-        id: UUID().uuidString,
+        id: "wb_1234567890",
         icon: "https://tvax3.sinaimg.cn/crop.0.0.750.750.180/c67b8c76ly8fgbvbu2cszj20ku0kujsq.jpg",
-        name: "吃货少女",
+        name: "吃货少女侃侃",
         region: "北京 西城区",
         personalSign: nil,
         gender: .female
     )
     
     let profile2: Profile = Profile(
-        id: UUID().uuidString,
+        id: "wb_1234567891",
         icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
         name: "文艺青年",
         region: "安道尔",
@@ -36,7 +36,7 @@ struct Development {
     )
     
     let profile3: Profile = Profile(
-        id: UUID().uuidString,
+        id: "wb_1234567892",
         icon: "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
         name: "无名氏",
         region: "安道尔",
