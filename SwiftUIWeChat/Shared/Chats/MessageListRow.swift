@@ -86,7 +86,6 @@ struct MessageListRow: View {
 }
 
 
-
 struct MessageListRow_Previews: PreviewProvider {
     
     static let chat = dev.chats[0]

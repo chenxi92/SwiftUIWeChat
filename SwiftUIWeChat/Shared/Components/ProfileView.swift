@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var chatVM: ChatViewModel
     let profile: Profile
     
     var body: some View {
@@ -19,17 +20,23 @@ struct ProfileView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton()
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .foregroundColor(.primary)
-                }
+        .toolbar { toolbarItmes }
+    }
+}
+
+extension ProfileView {
+    
+    @ToolbarContentBuilder
+    var toolbarItmes: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            BackButton()
+        }
+        ToolbarItem(placement: .navigationBarTrailing) {
+            NavigationLink {
+                
+            } label: {
+                Image(systemName: "ellipsis")
+                    .foregroundColor(.primary)
             }
         }
     }
@@ -38,11 +45,12 @@ struct ProfileView: View {
         Group {
             HStack(alignment: .top) {
                 AvatarView(url: URL(string: profile.icon)!)
+                    .padding(.trailing)
                 
                 VStack(alignment: .leading) {
                     HStack {
                         Text(profile.name)
-                            .font(.system(.title2, design: .monospaced))
+                            .font(.system(.title3, design: .monospaced))
                             .fontWeight(.bold)
                         Image(systemName: "person.fill")
                             .foregroundColor(profile.gender == .female ? .pink : .blue)
@@ -50,18 +58,19 @@ struct ProfileView: View {
                     Text("Name: \(profile.name)")
                         .font(.body)
                     Text("WeChat ID: \(profile.id)")
-                        .font(.caption)
+                        .font(.callout)
                     Text("Region: \(profile.region)")
-                        .font(.caption)
+                        .font(.callout)
                 }
                 
                 Spacer()
             }
-            .padding(.horizontal)
-            .padding(.vertical)
+            .padding(.top)
+            .frame(maxWidth: .infinity)
             
             Divider()
         }
+        .padding(.horizontal)
     }
     
     var sectionSection: some View {
@@ -155,14 +164,16 @@ struct ProfileView: View {
         Group {
             HStack {
                 Spacer()
-                Button {
-                    
+                NavigationLink {
+                    MessageListView(chat: chatVM.chat(for: profile))
                 } label: {
                     Label("Messages", systemImage: "message")
                         .font(.system(.headline, design: .rounded))
                 }
+                
                 Spacer()
             }
+            .padding(.vertical)
             
             Divider()
             
@@ -176,22 +187,24 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
+            .padding(.vertical)
         }
+        .padding(.horizontal)
     }
     
     var spacer: some View {
-        HStack {
-        }
-        .frame(height: 8)
-        .frame(maxWidth: .infinity)
-        .background(Color.black.opacity(0.2))
+        Color.clear
+            .frame(height: 15)
+            .frame(maxWidth: .infinity)
+            .background(.ultraThickMaterial)
     }
 }
 
-struct MessageProfileView_Previews: PreviewProvider {
+struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             ProfileView(profile: dev.profile1)
+                .environmentObject(ChatViewModel())
         }
     }
 }

@@ -163,6 +163,7 @@ struct MomentsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             MomentsView()
+                .environmentObject(ProfileViewModel())
                 .environmentObject(MomentsViewModel())
                 .navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)

@@ -38,9 +38,7 @@ struct ContentView: View {
     @State private var isShowChatMenu: Bool = false
     @State private var isShowContactMenu: Bool = false
     
-    @StateObject private var profileVM = ProfileViewModel()
-    @StateObject private var momentsVM = MomentsViewModel()
-    @StateObject private var contactsVM = ContactsViewModel()
+    
     
     var body: some View {
         NavigationView { /// <--- This may cause toolbar disappear in sub views, like: ChatsTabView, ContactsTabView, DiscoverTabView, MeTabView
@@ -63,9 +61,6 @@ struct ContentView: View {
                 MeTabView()
                     .customTabItem(.me)
             }
-            .environmentObject(profileVM)
-            .environmentObject(momentsVM)
-            .environmentObject(contactsVM)
             .accentColor(.green)
             .navigationTitle(selection.title)
             .navigationBarTitleDisplayMode(.inline)

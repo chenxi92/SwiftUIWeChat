@@ -14,16 +14,12 @@ import SwiftUI
 /// https://stackoverflow.com/a/68396510/5972156
 
 struct DiscoverTabView: View {
-    @EnvironmentObject var profileVM: ProfileViewModel
-    @EnvironmentObject var momentsVM: MomentsViewModel
     
     var body: some View {
         List {
             VStack(spacing: 0) {
                 NavigationLink {
                     MomentsView()
-                        .environmentObject(profileVM)
-                        .environmentObject(momentsVM)
                 } label: {
                     momentRow
                 }
@@ -163,8 +159,6 @@ struct DiscoverTabView_Previews: PreviewProvider {
         NavigationView {
             DiscoverTabView()
                 .navigationBarTitleDisplayMode(.inline)
-                .environmentObject(ProfileViewModel())
-                .environmentObject(MomentsViewModel())
         }
     }
 }

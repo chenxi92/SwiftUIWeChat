@@ -9,15 +9,15 @@ import SwiftUI
 
 struct ChatsTabView: View {
     
-    @StateObject var chatVM = ChatViewModel()
-    @EnvironmentObject var profileVM:ProfileViewModel
+    @EnvironmentObject var chatVM: ChatViewModel
+    @EnvironmentObject var profileVM: ProfileViewModel
     
     @Binding var isShowChatMenu: Bool
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
             List {
-                ForEach(chatVM.chats) { chat in
+                ForEach(chatVM.sortedChats) { chat in
                     listRow(chat: chat)
                 }
             }
@@ -94,8 +94,6 @@ struct ChatsTabView: View {
     
     func listRow(chat: Chat) -> some View {
         ChatListRow(chat: chat)
-            .environmentObject(chatVM)
-            .environmentObject(profileVM)
             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                 Button(role: .destructive) {
                     chatVM.chatDelete(chat: chat)
@@ -138,7 +136,8 @@ struct ChatsTabView: View {
 struct ChatTabView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChatsTabView(chatVM: ChatViewModel(), isShowChatMenu: .constant(true))
+            ChatsTabView(isShowChatMenu: .constant(true))
+                .environmentObject(ChatViewModel())
                 .environmentObject(ProfileViewModel())
                 .navigationBarTitleDisplayMode(.inline)
         }

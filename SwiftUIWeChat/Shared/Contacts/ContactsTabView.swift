@@ -22,7 +22,6 @@ struct ContactsTabView: View {
                         }
                     }
                 }
-                .listRowSeparator(.hidden, edges: .all)
                 .listRowInsets(.none)
                 .listSectionSeparator(.hidden)
             }

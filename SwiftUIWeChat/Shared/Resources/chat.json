@@ -4,7 +4,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "26AA64B2-93B9-11EC-85D8-2B3B1215A71B",
+            "id": "wb_1234567890",
             "name": "吃货少女侃侃",
             "icon": "https://tvax3.sinaimg.cn/crop.0.0.750.750.180/c67b8c76ly8fgbvbu2cszj20ku0kujsq.jpg",
             "region": "北京 西城区",
@@ -139,7 +139,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "050AC456-93BD-11EC-A504-FF66971876DF",
+            "id": "wb_1234567891",
             "isRead": true,
             "isVisiable": true,
             "name": "Resistu",
@@ -179,7 +179,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "0C5935EE-93BD-11EC-8C59-CB72E46C61BD",
+            "id": "wb_1234567892",
             "name": "董叔",
             "icon": "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
             "region": "南京",
@@ -230,7 +230,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "2A2D7F12-93BD-11EC-98A5-53DB25D3A94C",
+            "id": "wb_1234567893",
             "name": "文艺青年",
             "icon": "https://tvax4.sinaimg.cn/crop.0.0.996.996.180/895773a3ly8go4vm65cxdj20ro0ro76d.jpg",
             "region": "安道尔",
@@ -251,7 +251,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "4BD3C856-93BD-11EC-A52D-4F622C3073A2",
+            "id": "wb_1234567894",
             "name": "英国报姐",
             "icon": "https://tvax2.sinaimg.cn/crop.0.0.512.512.180/ec9ba1e1ly8go9t6knmhnj20e80e8glz.jpg",
             "region": "伦敦",
@@ -278,7 +278,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "5E7FE106-93BD-11EC-A9FA-CF55B05B145D",
+            "id": "wb_1234567895",
             "name": "扒圈王子",
             "icon": "https://tvax3.sinaimg.cn/crop.0.0.512.512.180/eb0750cdly8gecc4ntmoqj20e80e8q32.jpg",
             "region": "苏州",
@@ -316,7 +316,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "6569A650-93BD-11EC-B3B0-03A0ACC5B8D7",
+            "id": "wb_1234567896",
             "name": "知名夺笋少年",
             "icon": "https://tvax1.sinaimg.cn/crop.0.0.1080.1080.180/45815d3aly8gmo7ghzz4ij20u00u0djl.jpg",
             "region": "天津",
@@ -343,10 +343,11 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "7B871FA8-93BD-11EC-AB6E-9354CA9DA73C",
+            "id": "wb_1234567897",
             "name": "饭圈安利娘",
             "icon": "https://tvax3.sinaimg.cn/crop.0.0.1080.1080.180/006pz9M8ly8gsenc2ndeoj30u00u0tbc.jpg",
             "region": "北京",
+            "personalSign": "哈哈哈哈😄",
             "gender": 1
         },
         "messages": [
@@ -381,7 +382,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "95359E02-93BD-11EC-9D71-4BF72178931A",
+            "id": "wb_1234567898",
             "name": "资深吃瓜姐妹",
             "icon": "https://tvax3.sinaimg.cn/crop.0.0.995.995.180/005zSWdkly8ggjo9480bnj30rn0rnwgt.jpg",
             "region": "广州",
@@ -414,7 +415,7 @@
         "isRead": true,
         "isVisiable": true,
         "profile": {
-            "id": "9AD9E0D4-93BD-11EC-B53D-AF19DDC0EAAD",
+            "id": "wb_1234567899",
             "name": "美食",
             "icon": "https://tvax3.sinaimg.cn/crop.0.0.663.663.180/006VsWdVly8gyp42jhd58j30if0if0tc.jpg",
             "region": "广州",

@@ -14,12 +14,28 @@ struct Chat: Identifiable, Codable {
     let profile: Profile
     var messages: [Message]
     
+    var lastUpdateTime: Int {
+        if let last = messages.last {
+            return Int(last.date.timeIntervalSince1970)
+        }
+        return 0
+    }
+}
+
+extension Chat {
     mutating func readToggle() {
         isRead.toggle()
     }
     
     mutating func visiableToggle() {
         isVisiable.toggle()
+    }
+    
+}
+
+extension Chat {
+    static func create(profile: Profile) -> Chat {
+        return Chat(id: UUID(), isRead: true, isVisiable: true, profile: profile, messages: [])
     }
 }
 

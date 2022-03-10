@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MessageListView: View {
     @EnvironmentObject var chatVM: ChatViewModel
-    @EnvironmentObject var profileVM: ProfileViewModel
-    
     let chat: Chat
     
     @State private var text: String = ""
@@ -21,6 +19,8 @@ struct MessageListView: View {
     @State private var showHoldToTalk: Bool = false
     @State private var showStickerView: Bool = false
     @State private var showAdditionView: Bool = false
+    
+    private let columns = [GridItem(.flexible(minimum: 10))]
     
     var body: some View {
         VStack(spacing: 0) {
@@ -45,6 +45,9 @@ struct MessageListView: View {
             toolbarButtons()
         }
     }
+}
+
+extension MessageListView {
     
     private func messageList() -> some View {
         GeometryReader {reader in
@@ -154,7 +157,7 @@ struct MessageListView: View {
         }
     }
     
-    private let columns = [GridItem(.flexible(minimum: 10))]
+    
     private func getMessageView(viewWidth: CGFloat) -> some View {
         LazyVGrid(columns: columns, spacing: 0) {
             ForEach(chat.messages) { message in
@@ -187,7 +190,6 @@ struct MessageView_Previews: PreviewProvider {
         NavigationView {
             MessageListView(chat: dev.chats[0])
                 .environmentObject(ChatViewModel())
-                .environmentObject(ProfileViewModel())
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

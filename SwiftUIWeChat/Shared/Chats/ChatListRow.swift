@@ -10,16 +10,11 @@ import SwiftUI
 struct ChatListRow: View {
     let chat: Chat
     
-    @EnvironmentObject var chatVM: ChatViewModel
-    @EnvironmentObject var profileVM: ProfileViewModel
-    
     var body: some View {
         CustomLinkRow {
             content
         } destination: {
             MessageListView(chat: chat)
-                .environmentObject(chatVM)
-                .environmentObject(profileVM)
         }
     }
     
