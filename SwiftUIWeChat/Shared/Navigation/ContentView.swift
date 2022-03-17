@@ -13,12 +13,12 @@ fileprivate enum Tab {
     case discover
     case me
     
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
-            case .chat: return "微信"
-            case .contact: return "通讯录信"
-            case .discover: return "发现"
-            case .me: return "我"
+            case .chat: return "Chats"
+            case .contact: return "Contacts"
+            case .discover: return "Discover"
+            case .me: return "Me"
         }
     }
     var imageName: String {
@@ -62,7 +62,7 @@ struct ContentView: View {
                     .customTabItem(.me)
             }
             .accentColor(.green)
-            .navigationTitle(selection.title)
+            .navigationTitle(Text(selection.title))
             .navigationBarTitleDisplayMode(.inline)
             .navigationViewStyle(.stack)
             .navigationBarHidden(selection == .me ? true : false)

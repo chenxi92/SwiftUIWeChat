@@ -98,7 +98,7 @@ extension DiscoverTabView {
             Image(systemName: "network")
                 .foregroundColor(.mint)
                 .padding(.trailing, 5)
-            Text("朋友圈")
+            Text("Moments")
             Spacer()
         }
     }
@@ -108,7 +108,7 @@ extension DiscoverTabView {
             Image(systemName: "globe.americas")
                 .foregroundColor(.pink)
                 .padding(.trailing, 5)
-            Text("视频号")
+            Text("Channels")
             Spacer()
         }
     }
@@ -118,7 +118,7 @@ extension DiscoverTabView {
             Image(systemName: "livephoto")
                 .foregroundColor(.red)
                 .padding(.trailing, 5)
-            Text("直播")
+            Text("Live")
             Spacer()
         }
     }
@@ -128,7 +128,7 @@ extension DiscoverTabView {
             Image(systemName: "globe.americas")
                 .foregroundColor(.yellow)
                 .padding(.trailing, 5)
-            Text("看一看")
+            Text("Top Stories")
             Spacer()
         }
     }
@@ -138,7 +138,7 @@ extension DiscoverTabView {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.red)
                 .padding(.trailing, 5)
-            Text("搜一搜")
+            Text("Search")
             Spacer()
         }
     }
@@ -148,7 +148,7 @@ extension DiscoverTabView {
             Image(systemName: "antenna.radiowaves.left.and.right")
                 .foregroundColor(.blue)
                 .padding(.trailing, 5)
-            Text("附近")
+            Text("Nearby")
             Spacer()
         }
     }

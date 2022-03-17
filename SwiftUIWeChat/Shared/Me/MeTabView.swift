@@ -70,7 +70,7 @@ extension MeTabView {
     var listContent: some View {
         Group {
             firstSection
-            sectionSection
+            secondSection
             thirdSection
         }
     }
@@ -79,59 +79,59 @@ extension MeTabView {
         Group {
             NavigationLink {
                 List(0 ..< 5) { item in
-                    Text("服务")
+                    Text("Services")
                 }
             } label: {
-                rowContent(systemName: "message", foregroundColor: .green, text: "服务")
+                rowContent(systemName: "message", foregroundColor: .green, text: "Services")
             }
             spacerRow
         }
     }
     
-    var sectionSection: some View {
+    var secondSection: some View {
         Group {
             NavigationLink {
                 List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    Text("收藏")
+                    Text("Favorites")
                 }
             } label: {
-                rowContent(systemName: "cube", foregroundColor: .mint, text: "收藏")
+                rowContent(systemName: "cube", foregroundColor: .mint, text: "Favorites")
             }
             Divider()
             
             NavigationLink {
                 List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    Text("收藏")
+                    Text("Moments")
                 }
             } label: {
-                rowContent(systemName: "photo", foregroundColor: .pink, text: "朋友圈")
+                rowContent(systemName: "photo", foregroundColor: .pink, text: "Moments")
             }
             Divider()
             
             NavigationLink {
                 List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    Text("收藏")
+                    Text("Channel")
                 }
             } label: {
-                rowContent(systemName: "play.circle", foregroundColor: .yellow, text: "视频号")
+                rowContent(systemName: "play.circle", foregroundColor: .yellow, text: "Channel")
             }
             Divider()
             
             NavigationLink {
                 List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    Text("收藏")
+                    Text("Cards & Offers")
                 }
             } label: {
-                rowContent(systemName: "menucard", foregroundColor: .cyan, text: "卡包")
+                rowContent(systemName: "menucard", foregroundColor: .cyan, text: "Cards & Offers")
             }
             Divider()
             
             NavigationLink {
                 List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    Text("收藏")
+                    Text("Sticker Gallery")
                 }
             } label: {
-                rowContent(systemName: "face.smiling", foregroundColor: .blue, text: "表情")
+                rowContent(systemName: "face.smiling", foregroundColor: .blue, text: "Sticker Gallery")
             }
             
             spacerRow
@@ -142,15 +142,15 @@ extension MeTabView {
         Group {
             NavigationLink {
                 List(0 ..< 5) { item in
-                    Text("收藏")
+                    Text("Settings")
                 }
             } label: {
-                rowContent(systemName: "gearshape", foregroundColor: .blue, text: "设置")
+                rowContent(systemName: "gearshape", foregroundColor: .blue, text: "Settings")
             }
         }
     }
     
-    func rowContent(systemName: String, foregroundColor: Color, text: String) -> some View {
+    func rowContent(systemName: String, foregroundColor: Color, text: LocalizedStringKey) -> some View {
         HStack(spacing: 0) {
             Image(systemName: systemName)
                 .foregroundColor(foregroundColor)

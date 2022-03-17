@@ -1,2 +1,80 @@
-"hello_world"="你好";
+/* 
+  Localizable.strings
+  SwiftUIWeChat
+
+  Created by peak on 2022/3/17.
+  
+*/
+"Chats" = "微信";
+"Contacts" = "通讯录";
+"Discover" = "发现";
+"Me" = "我";
+
+"Weixin" = "微信";
+"Delete" = "删除";
+"Show" = "显示";
+"Hide" = "不显示";
+"Mark as Read" = "标记已读";
+"Mark as Unread" = "标记未读";
+"New Chat" = "新建聊天";
+"Add Contacts" = "添加朋友";
+"Scan" = "扫一扫";
+"Money" = "收付款";
+
+"Recently Used" = "最近使用";
+"All Stickers" = "所有表情";
+
+"Details" = "聊天详情";
+"Search Chat History" = "查找聊天内容";
+"Mute Notifications" = "消息免打扰";
+"Sticky on Top" = "置顶聊天";
+"Alert" = "提醒";
+"Background" = "设置当前聊天背景";
+"Clear Chat History" = "清空聊天记录";
+"Report" = "投诉";
+
+"Moments" = "朋友圈";
+"Channels" = "视频号";
+"Live" = "直播";
+"Top Stories" = "看一看";
+"Search" = "搜一搜";
+"Nearby" = "附近";
+
+"Services" = "服务";
+"Favorites" = "收藏";
+"Channel" = "视频号";
+"Cards & Offers" = "卡包";
+"Sticker Gallery" = "表情";
+"Settings" = "设置";
+
+"Tags" = "标签";
+"Privacy" = "朋友权限";
+"More" = "更多";
+"Messages" = "发消息";
+"Voice or Video Call" = "音视频通话";
+
+"Name: %@" = "昵称: %@";
+"WeChat ID: %@" = "微信号: %@";
+"Region: %@" = "地区: %@";
+
+"Edit Contact" = "资料设置";
+"Settings.Privacy" = "设置备注和标签";
+"Share Contact" = "把她推荐给朋友";
+"Stared" = "设为星标朋友";
+"Block" = "加入黑名单";
+
+"Account Security" = "账号安全";
+"Parental Control Mode" = "青少年模式";
+"Easy Mode" = "关怀模式";
+"Message Notifications" = "新消息模式";
+"General" = "通用";
+"Friends' Permissions" = "朋友权限";
+"My Information & Authorizations" = "个人信息与权限";
+"Personal Information Collected" = "个人信息收集清单";
+"Information Shared with Third Parties" = "第三方信息共享清单";
+"Help & Feedback" = "帮助与反馈";
+"About" = "关于微信";
+"Plus" = "插件";
+"Switch Account" = "切换账号";
+"" = "退出登录";
 

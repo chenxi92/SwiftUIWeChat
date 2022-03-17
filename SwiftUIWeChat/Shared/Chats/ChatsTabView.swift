@@ -40,7 +40,7 @@ struct ChatsTabView: View {
         }
     }
     
-    func menuLabel(title: String, imageName: String) -> some View {
+    func menuLabel(title: LocalizedStringKey, imageName: String) -> some View {
         HStack {
             Image(systemName: imageName)
                 .padding(.leading, 10)
@@ -59,7 +59,7 @@ struct ChatsTabView: View {
                     isShowChatMenu.toggle()
                 }
             } label: {
-                menuLabel(title: "发起群聊", imageName: "message")
+                menuLabel(title: "New Chat", imageName: "message")
             }
             
             Button {
@@ -67,7 +67,7 @@ struct ChatsTabView: View {
                     isShowChatMenu.toggle()
                 }
             } label: {
-                menuLabel(title: "添加朋友", imageName: "person.fill.badge.plus")
+                menuLabel(title: "Add Contacts", imageName: "person.fill.badge.plus")
             }
             
             Button {
@@ -75,7 +75,7 @@ struct ChatsTabView: View {
                     isShowChatMenu.toggle()
                 }
             } label: {
-                menuLabel(title: "扫一扫", imageName: "qrcode.viewfinder")
+                menuLabel(title: "Scan", imageName: "qrcode.viewfinder")
             }
             
             Button {
@@ -83,7 +83,7 @@ struct ChatsTabView: View {
                     isShowChatMenu.toggle()
                 }
             } label: {
-                menuLabel(title: "收付款", imageName: "dollarsign.circle")
+                menuLabel(title: "Money", imageName: "dollarsign.circle")
             }
         }
         .foregroundColor(.white)
@@ -98,20 +98,20 @@ struct ChatsTabView: View {
                 Button(role: .destructive) {
                     chatVM.chatDelete(chat: chat)
                 } label: {
-                    Text("删除")
+                    Text("Delete")
                 }
     
                 Button {
                     chatVM.chatToggleVisible(chat: chat)
                 } label: {
-                    Text(chat.isVisiable ? "不显示" : "显示")
+                    Text(chat.isVisiable ? "Show" : "Hide")
                 }
                 .tint(.orange)
                 
                 Button {
                     chatVM.chatToggleRead(chat: chat)
                 } label: {
-                    Text(chat.isRead ? "标为未读" : "标为已读")
+                    Text(chat.isRead ? "Mark as Unread" : "Mark as Read")
                 }
                 .tint(.blue)
             }

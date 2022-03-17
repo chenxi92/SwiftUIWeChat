@@ -21,7 +21,6 @@
 		15FDE07E27D78E13008086FA /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDE07D27D78E13008086FA /* FlexibleView.swift */; };
 		6C3E082727C630E300AC21BC /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E082627C630E300AC21BC /* Moment.swift */; };
 		6C3E082927C63AB400AC21BC /* MomentListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E082827C63AB400AC21BC /* MomentListRowView.swift */; };
-		6C86BD7627C387F70055FF3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C86BD7827C387F70055FF3F /* Localizable.strings */; };
 		6C86BD7C27C38B900055FF3F /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C86BD7B27C38B900055FF3F /* ImageLoaderService.swift */; };
 		6C86BD7E27C38BF60055FF3F /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C86BD7D27C38BF60055FF3F /* LocalFileManager.swift */; };
 		6C86BD8027C390F50055FF3F /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C86BD7F27C390F50055FF3F /* CachedAsyncImage.swift */; };
@@ -51,6 +50,7 @@
 		6C92539D27BFAAA4003ADCBA /* chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C92539C27BFAAA4003ADCBA /* chat.json */; };
 		6CB8DC1C27D9CBB30078D0F5 /* String+PinYin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB8DC1B27D9CBB30078D0F5 /* String+PinYin.swift */; };
 		6CB8DC1E27D9CEBA0078D0F5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB8DC1D27D9CEBA0078D0F5 /* Contact.swift */; };
+		6CC9A10927E30C8A002A6775 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CC9A10B27E30C8A002A6775 /* Localizable.strings */; };
 		6CE5B37027D1B78F0025D46C /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */; };
 		6CE5B37227D1BD170025D46C /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37127D1BD170025D46C /* LocalCache.swift */; };
 		6CE5B37627D204080025D46C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5B37527D204080025D46C /* ProfileView.swift */; };
@@ -76,8 +76,6 @@
 		15FDE07D27D78E13008086FA /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		6C3E082627C630E300AC21BC /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		6C3E082827C63AB400AC21BC /* MomentListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListRowView.swift; sourceTree = "<group>"; };
-		6C86BD7727C387F70055FF3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		6C86BD7927C387FA0055FF3F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6C86BD7B27C38B900055FF3F /* ImageLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
 		6C86BD7D27C38BF60055FF3F /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		6C86BD7F27C390F50055FF3F /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
@@ -108,6 +106,8 @@
 		6C92539C27BFAAA4003ADCBA /* chat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chat.json; sourceTree = "<group>"; };
 		6CB8DC1B27D9CBB30078D0F5 /* String+PinYin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PinYin.swift"; sourceTree = "<group>"; };
 		6CB8DC1D27D9CEBA0078D0F5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		6CC9A10A27E30C8A002A6775 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6CC9A10C27E30C8B002A6775 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6CE5B36F27D1B78F0025D46C /* StickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		6CE5B37127D1BD170025D46C /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		6CE5B37527D204080025D46C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				6C92539C27BFAAA4003ADCBA /* chat.json */,
-				6C86BD7827C387F70055FF3F /* Localizable.strings */,
+				6CC9A10B27E30C8A002A6775 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -383,7 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C86BD7627C387F70055FF3F /* Localizable.strings in Resources */,
+				6CC9A10927E30C8A002A6775 /* Localizable.strings in Resources */,
 				6C92539D27BFAAA4003ADCBA /* chat.json in Resources */,
 				6C86BD8E27C5D7F30055FF3F /* README.md in Resources */,
 				6C92537227BF40DD003ADCBA /* Preview Assets.xcassets in Resources */,
@@ -451,11 +451,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6C86BD7827C387F70055FF3F /* Localizable.strings */ = {
+		6CC9A10B27E30C8A002A6775 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6C86BD7727C387F70055FF3F /* en */,
-				6C86BD7927C387FA0055FF3F /* zh-Hans */,
+				6CC9A10A27E30C8A002A6775 /* en */,
+				6CC9A10C27E30C8B002A6775 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

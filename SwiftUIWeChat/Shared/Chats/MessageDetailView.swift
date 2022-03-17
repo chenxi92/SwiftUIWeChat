@@ -28,7 +28,7 @@ struct MessageDetailView: View {
             .frame(maxWidth: .infinity)
         }
         .background(.thickMaterial)
-        .navigationTitle("聊天详情")
+        .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -128,7 +128,7 @@ struct MessageDetailView: View {
         }
     }
     
-    private func togleRow(title: String, isOn: Binding<Bool>) -> some View {
+    private func togleRow(title: LocalizedStringKey, isOn: Binding<Bool>) -> some View {
         HStack {
             Text(title)
             Spacer()
@@ -138,7 +138,7 @@ struct MessageDetailView: View {
         .padding(.vertical, 5)
     }
     
-    private func linkRow<Destination: View>(title: String, imageName: String, destination: () -> Destination) -> some View {
+    private func linkRow<Destination: View>(title: LocalizedStringKey, imageName: String, destination: () -> Destination) -> some View {
         NavigationLink {
             destination()
         } label: {

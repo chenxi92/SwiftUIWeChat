@@ -1,2 +1,8 @@
-"hello_world"="Hello, World";
+/* 
+  Localizable.strings
+  SwiftUIWeChat
 
+  Created by peak on 2022/3/17.
+  
+*/
+"Settings.Privacy" = "Privacy";
