@@ -42,7 +42,7 @@ extension MeTabView {
                     Spacer()
                 }
                 HStack(spacing: 0) {
-                    Text("微信号: \(profileVM.myProfile.id)")
+                    Text("WeChat ID: \(profileVM.myProfile.id)")
                         .font(.body)
                     Spacer()
                     Image(systemName: "qrcode")
@@ -159,11 +159,11 @@ extension MeTabView {
                 .foregroundColor(.primary)
             Spacer()
             Image(systemName: "chevron.right")
-                .foregroundColor(.primary)
+                .foregroundColor(.secondary)
         }
         .font(.title3)
-        .padding(.vertical, 9)
-        .padding(.horizontal)
+        .padding(.vertical, 7)
+        .padding(.horizontal, 5)
     }
     
     
@@ -171,11 +171,22 @@ extension MeTabView {
 
 struct MeTabView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            MeTabView()
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarHidden(true)
-                .environmentObject(ProfileViewModel())
+        Group {
+            NavigationView {
+                MeTabView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarHidden(true)
+                    .environmentObject(ProfileViewModel())
+                    .environment(\.locale, .init(identifier: "en"))
+            }
+            
+            NavigationView {
+                MeTabView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarHidden(true)
+                    .environmentObject(ProfileViewModel())
+                    .environment(\.locale, .init(identifier: "zh-hans"))
+            }
         }
     }
 }

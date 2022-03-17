@@ -1,8 +1,80 @@
-/* 
+/*
   Localizable.strings
   SwiftUIWeChat
 
   Created by peak on 2022/3/17.
   
 */
+"Chats" = "Chats";
+"Contacts" = "Contacts";
+"Discover" = "Discover";
+"Me" = "Me";
+
+"Weixin" = "Weixin";
+"Delete" = "Delete";
+"Show" = "Show";
+"Hide" = "Hide";
+"Mark as Read" = "Mark as Read";
+"Mark as Unread" = "Mark as Unread";
+"New Chat" = "New Chat";
+"Add Contacts" = "Add Contacts";
+"Scan" = "Scan";
+"Money" = "Money";
+
+"Recently Used" = "Recently Used";
+"All Stickers" = "All Stickers";
+
+"Details" = "Details";
+"Search Chat History" = "Search Chat History";
+"Mute Notifications" = "Mute Notifications";
+"Sticky on Top" = "Sticky on Top";
+"Alert" = "Alert";
+"Background" = "Background";
+"Clear Chat History" = "Clear Chat History";
+"Report" = "Report";
+
+"Moments" = "Moments";
+"Channels" = "Channels";
+"Live" = "Live";
+"Top Stories" = "Top Stories";
+"Search" = "Search";
+"Nearby" = "Nearby";
+
+"Services" = "Services";
+"Favorites" = "Favorites";
+"Channel" = "Channel";
+"Cards & Offers" = "Cards & Offers";
+"Sticker Gallery" = "Sticker Gallery";
+"Settings" = "Settings";
+
+"Tags" = "Tags";
+"Privacy" = "Privacy";
+"More" = "More";
+"Messages" = "Messages";
+"Voice or Video Call" = "Voice or Video Call";
+
+"Name: %@" = "Name: %@";
+"WeChat ID: %@" = "WeChat ID: %@";
+"Region: %@" = "Region: %@";
+
+"Edit Contact" = "Edit Contact";
 "Settings.Privacy" = "Privacy";
+"Share Contact" = "Share Contact";
+"Stared" = "Stared";
+"Block" = "Block";
+
+"Account Security" = "Account Security";
+"Parental Control Mode" = "Parental Control Mode";
+"Easy Mode" = "Easy Mode";
+"Message Notifications" = "Message Notifications";
+"General" = "General";
+"Friends' Permissions" = "Friends' Permissions";
+"My Information & Authorizations" = "My Information & Authorizations";
+"Personal Information Collected" = "Personal Information Collected";
+"Information Shared with Third Parties" = "Information Shared with Third Parties";
+"Help & Feedback" = "Help & Feedback";
+"About" = "About";
+"Plus" = "Plus";
+"Switch Account" = "Switch Account";
+"Log Out" = "Log Out";
+
