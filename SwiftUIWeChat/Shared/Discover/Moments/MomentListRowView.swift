@@ -81,7 +81,15 @@ extension MomentListRowView {
             Text(text)
                 .foregroundColor(.primary)
         } else {
-            EmptyView()
+            if moment.images.isEmpty {
+                EmptyView()
+            } else {
+                if moment.images.count == 1 {
+                    SingleImage(urlString: moment.images[0])
+                } else {
+                    MultipleImage(urlStrings: moment.images)
+                }
+            }
         }
     }
     
@@ -178,11 +186,109 @@ extension MomentListRowView {
         .padding(.horizontal, 5)
         .background(Color.black.opacity(0.15))
     }
+    
+}
+
+extension MomentListRowView {
+    
+    struct FullScreenImageView: View {
+        let urlArray: [String]?
+        let urlString: String
+        
+        @Binding var isShowFullScreen: Bool
+        
+        var body: some View {
+            VStack {
+                ZStack {
+                    Color.black.ignoresSafeArea()
+                    CachedAsyncImage(url: URL(string: urlString) ?? nil)
+                }
+                .transition(AnyTransition.slide.animation(.spring()))
+                .onTapGesture {
+                    isShowFullScreen = false
+                }
+            }
+            .onTapGesture {
+                isShowFullScreen = false
+            }
+        }
+    }
+    struct SingleImage: View {
+        let urlString: String
+        @State private var isShowFullScreen: Bool = false
+        
+        var body: some View {
+            CachedAsyncImage(url: URL(string: urlString)) { image in
+                image
+                    .resizable()
+                    .frame(maxWidth: 180, minHeight: 180, idealHeight: 180)
+                    .aspectRatio(1, contentMode: .fit)
+            } placeholder: {
+                ProgressView()
+            }
+            .fullScreenCover(isPresented: $isShowFullScreen) {
+                FullScreenImageView(urlArray: nil, urlString: urlString, isShowFullScreen: $isShowFullScreen)
+            }
+            .onTapGesture {
+                isShowFullScreen.toggle()
+            }
+        }
+    }
+    
+    struct MultipleImage: View {
+        let urlStrings: [String]
+        var rows: Int {
+            urlStrings.count / cols
+        }
+        var cols: Int {
+            urlStrings.count == 4 ? 2 : min(urlStrings.count, 3)
+        }
+        var lastRowCols: Int { urlStrings.count % cols }
+        var spacing: CGFloat = 8
+        @State private var isShowFullScreen: Bool = false
+        @State private var selectedUrlString: String = ""
+        
+        var body: some View {
+            VStack(alignment: .leading, spacing: spacing) {
+                ForEach(0..<rows, id: \.self) { row in
+                    self.rowBody(row: row, isLast: false)
+                }
+                if lastRowCols > 0 {
+                    self.rowBody(row: rows, isLast: true)
+                }
+            }
+            .fullScreenCover(isPresented: $isShowFullScreen) {
+                FullScreenImageView(urlArray: nil, urlString: selectedUrlString, isShowFullScreen: $isShowFullScreen)
+            }
+        }
+        
+        func rowBody(row: Int, isLast: Bool) -> some View {
+            HStack(spacing: spacing) {
+                ForEach(0..<(isLast ? self.lastRowCols : self.cols), id: \.self) { col in
+                    let url: URL = URL(string: urlStrings[row * self.cols + col])!
+                    CachedAsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
+                            .aspectRatio(1, contentMode: .fill)
+                            .clipped()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .onTapGesture {
+                        selectedUrlString = urlStrings[row * self.cols + col]
+                        isShowFullScreen.toggle()
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct MomentListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        MomentListRowView(moment: dev.momment1)
+        MomentListRowView(moment: dev.moment3)
             .environmentObject(ProfileViewModel())
             .environmentObject(MomentsViewModel())
     }

@@ -48,7 +48,7 @@ struct MomentLikesView: View {
 
 struct MomentLikesView_Previews: PreviewProvider {
     static var previews: some View {
-        MomentLikesView(moment: dev.momment1)
+        MomentLikesView(moment: dev.moment1)
             .environmentObject(MomentsViewModel())
     }
 }

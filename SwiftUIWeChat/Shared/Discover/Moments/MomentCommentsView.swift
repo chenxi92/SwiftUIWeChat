@@ -37,6 +37,6 @@ struct MomentCommentsView: View {
 
 struct MomentCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        MomentCommentsView(comments: dev.momment1.comments)
+        MomentCommentsView(comments: dev.moment1.comments)
     }
 }

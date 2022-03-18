@@ -49,7 +49,7 @@ struct MomentsView: View {
         }
         .navigationBarHidden(true)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("朋友圈")
+        .navigationTitle(Text("Moments"))
     }
     
     func GenerateNavigationView(proxy: GeometryProxy, value: [Anchor<CGPoint>]) -> some View {
@@ -143,7 +143,7 @@ struct CustomNavigationBarView: View {
             .frame(height: 44)
             .padding(.horizontal)
             
-            Text("朋友圈")
+            Text("Moments")
                 .font(.system(size: 16, weight: .semibold))
                 .opacity(progress)
                 .frame(height: 44, alignment: .center)
