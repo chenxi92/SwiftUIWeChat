@@ -56,24 +56,7 @@ struct MyProfileView: View {
             }
             
             NavigationLink {
-                VStack {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            AvatarView(url: URL(string: profileVM.myProfile.icon)!)
-                        }
-                        
-                        ZStack {
-                            QRView(qrCode: profileVM.myProfile.id)
-                            AvatarView(url: URL(string: profileVM.myProfile.icon)!)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .padding(.vertical, 50)
-                    .background(Color.white)
-                }
-                .background(Color.black.opacity(0.7))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                MyQRCodeView()
             } label: {
                 HStack {
                     Text("My QR Code")

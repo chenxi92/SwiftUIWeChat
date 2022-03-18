@@ -12,9 +12,9 @@ import Combine
 class ChatViewModel: ObservableObject {
     @Published var chats: [Chat] = [] { didSet { saveData() } }
     
-    public var sortedChats: [Chat] {
-        return chats.sorted { $0.lastUpdateTime > $1.lastUpdateTime }
-    }
+//    public var sortedChats: [Chat] {
+//        return chats.sorted { $0.lastUpdateTime > $1.lastUpdateTime }
+//    }
     
     @Published var searchText: String = ""
     @Published private(set) var suggestedSearches: [Chat] = []
@@ -89,6 +89,13 @@ class ChatViewModel: ObservableObject {
     func chatDelete(chat: Chat) {
         if let index = chats.firstIndex(where: { $0.id == chat.id }) {
             chats.remove(at: index)
+            print("delete chat in \(index)")
+        }
+    }
+    
+    func chatDelete(profile: Profile) {
+        if let index = chats.firstIndex(where: { $0.profile.id == profile.id }) {
+            chatDelete(chat: chats[index])
         }
     }
     

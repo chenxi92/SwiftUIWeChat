@@ -33,7 +33,7 @@ extension ProfileView {
         }
         ToolbarItem(placement: .navigationBarTrailing) {
             NavigationLink {
-                EditContact()
+                EditContact(profile: profile)
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.primary)

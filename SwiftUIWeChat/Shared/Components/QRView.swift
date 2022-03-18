@@ -11,6 +11,7 @@ import CoreImage.CIFilterBuiltins
 struct QRView: View {
     let qrCode: String
     var size: CGSize = CGSize(width: 200, height: 200)
+    var correctionLevel: String = "M"
     
     @State private var image: UIImage?
     
@@ -34,6 +35,8 @@ struct QRView: View {
         let context = CIContext()
         let filter = CIFilter.qrCodeGenerator()
         filter.message = Data(qrCode.utf8)
+        /// The QR code correction level: L, M, Q, or H.
+        filter.correctionLevel = correctionLevel
         
         guard let outputImage = filter.outputImage, let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else {
             return

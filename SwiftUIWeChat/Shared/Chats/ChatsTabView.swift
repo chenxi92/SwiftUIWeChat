@@ -14,10 +14,14 @@ struct ChatsTabView: View {
     
     @Binding var isShowChatMenu: Bool
     
+    var sortedChats: [Chat] {
+        chatVM.chats.sorted { $0.lastUpdateTime > $1.lastUpdateTime }
+    }
+    
     var body: some View {
         ZStack(alignment: .topTrailing) {
             List {
-                ForEach(chatVM.sortedChats) { chat in
+                ForEach(sortedChats) { chat in
                     listRow(chat: chat)
                 }
             }

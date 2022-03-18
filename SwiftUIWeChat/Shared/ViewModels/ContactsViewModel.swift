@@ -36,4 +36,20 @@ class ContactsViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    public func contactDelete(profile: Profile) {
+        let temp = allContacts
+        
+        for i in 0..<temp.count {
+            var contact = temp[i]
+            if let index = contact.contacts.firstIndex(where: { $0.id == profile.id }) {
+                contact.contacts.remove(at: index)
+                if contact.contacts.isEmpty {
+                    allContacts.remove(at: i)
+                } else {
+                    allContacts[i] = contact
+                }
+            }
+        }
+    }
 }

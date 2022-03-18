@@ -9,7 +9,7 @@ import Foundation
 
 struct Contact: Codable {
     let title: String
-    let contacts: [Profile]
+    var contacts: [Profile]
 }
 
 extension Contact: Identifiable {

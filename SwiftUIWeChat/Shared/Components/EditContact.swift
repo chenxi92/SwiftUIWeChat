@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct EditContact: View {
+    @EnvironmentObject var chatVM: ChatViewModel
+    @EnvironmentObject var contactsVM: ContactsViewModel
+    @Environment(\.dismiss) var dismiss
+    
     @State private var isStared: Bool = true
     @State private var isBlock: Bool = false
+    let profile: Profile
     
     var body: some View {
         List {
             Section {
-                NavigationLink {
-                    
-                } label: {
-                    HStack {
-                        Text("Settings.Privacy")
-                        Spacer()
-                    }
+                HStack {
+                    Text("Edit Contact")
+                    Spacer()
+                    Text(profile.name)
+                        .foregroundColor(.gray)
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.secondary.opacity(0.5))
                 }
                 
                 NavigationLink {
@@ -45,28 +50,12 @@ struct EditContact: View {
             }
             
             Section {
-                NavigationLink {
-                    
-                } label: {
-                    HStack {
-                        Text("Stared")
-                        Spacer()
-                        Toggle("", isOn: $isStared)
-                    }
-                }
+                Toggle("Stared", isOn: $isStared)
             }
             
             Section {
-                NavigationLink {
-                    
-                } label: {
-                    HStack {
-                        Text("Block")
-                        Spacer()
-                        Toggle("", isOn: $isBlock)
-                    }
-                }
-                
+                Toggle("Block", isOn: $isBlock)
+               
                 NavigationLink {
                     
                 } label: {
@@ -80,7 +69,7 @@ struct EditContact: View {
             HStack {
                 Spacer()
                 Button("Delete", role: .destructive) {
-                    
+                    onDelete()
                 }
                 Spacer()
             }
@@ -90,6 +79,12 @@ struct EditContact: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar { toolbarItmes }
+    }
+    
+    private func onDelete() {
+        chatVM.chatDelete(profile: profile)
+        contactsVM.contactDelete(profile: profile)
+        dismiss()
     }
 }
 
@@ -106,11 +101,15 @@ struct EditContact_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                EditContact()
+                EditContact(profile: ProfileViewModel().myProfile)
+                    .environmentObject(ChatViewModel())
+                    .environmentObject(ContactsViewModel())
                     .environment(\.locale, .init(identifier: "en"))
             }
             NavigationView {
-                EditContact()
+                EditContact(profile: ProfileViewModel().myProfile)
+                    .environmentObject(ChatViewModel())
+                    .environmentObject(ContactsViewModel())
                     .environment(\.locale, .init(identifier: "zh-Hans"))
             }
         }
