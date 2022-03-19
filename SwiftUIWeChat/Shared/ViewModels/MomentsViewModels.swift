@@ -10,6 +10,12 @@ import SwiftUI
 class MomentsViewModel: ObservableObject {
     @Published var moments: [Moment] = [] { didSet { saveData() } }
     
+    @Published var selectedImageID: String = ""
+    @Published var browseImages: [String] = []
+    @Published var dragOffset: CGSize = .zero
+    @Published var imageScale: CGFloat = 1
+    @Published var opaticy: Double = 1
+    
     private let fileName: String = "list"
     private let folderName: String = "moments"
     private let fileManager: LocalFileManager = LocalFileManager.instance
@@ -48,6 +54,8 @@ class MomentsViewModel: ObservableObject {
         let comment = Comment(profile: profile, text: text)
         self.moments[index].comments.append(comment)
     }
+    
+    // MARK: Private
     
     private func getData() {
         if let data = fileManager.getData(fileName: fileName, folderName: folderName) {

@@ -215,22 +215,21 @@ extension MomentListRowView {
     }
     struct SingleImage: View {
         let urlString: String
-        @State private var isShowFullScreen: Bool = false
-        
+        @EnvironmentObject var momentsVM: MomentsViewModel
         var body: some View {
             CachedAsyncImage(url: URL(string: urlString)) { image in
                 image
                     .resizable()
                     .frame(maxWidth: 180, minHeight: 180, idealHeight: 180)
                     .aspectRatio(1, contentMode: .fit)
+                    .tag(urlString)
+                    .onTapGesture {
+                        momentsVM.selectedImageID = urlString
+                        momentsVM.browseImages = [urlString]
+                    }
+                
             } placeholder: {
                 ProgressView()
-            }
-            .fullScreenCover(isPresented: $isShowFullScreen) {
-                FullScreenImageView(urlArray: nil, urlString: urlString, isShowFullScreen: $isShowFullScreen)
-            }
-            .onTapGesture {
-                isShowFullScreen.toggle()
             }
         }
     }
@@ -245,8 +244,8 @@ extension MomentListRowView {
         }
         var lastRowCols: Int { urlStrings.count % cols }
         var spacing: CGFloat = 8
-        @State private var isShowFullScreen: Bool = false
-        @State private var selectedUrlString: String = ""
+
+        @EnvironmentObject var momentsVM: MomentsViewModel
         
         var body: some View {
             VStack(alignment: .leading, spacing: spacing) {
@@ -257,28 +256,27 @@ extension MomentListRowView {
                     self.rowBody(row: rows, isLast: true)
                 }
             }
-            .fullScreenCover(isPresented: $isShowFullScreen) {
-                FullScreenImageView(urlArray: nil, urlString: selectedUrlString, isShowFullScreen: $isShowFullScreen)
-            }
         }
         
         func rowBody(row: Int, isLast: Bool) -> some View {
             HStack(spacing: spacing) {
                 ForEach(0..<(isLast ? self.lastRowCols : self.cols), id: \.self) { col in
-                    let url: URL = URL(string: urlStrings[row * self.cols + col])!
+                    let urlString = urlStrings[row * self.cols + col]
+                    let url: URL = URL(string: urlString)!
                     CachedAsyncImage(url: url) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .tag(urlString)
                             .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
                             .aspectRatio(1, contentMode: .fill)
                             .clipped()
+                            .onTapGesture {
+                                momentsVM.selectedImageID = urlString
+                                momentsVM.browseImages = urlStrings
+                            }
                     } placeholder: {
                         ProgressView()
-                    }
-                    .onTapGesture {
-                        selectedUrlString = urlStrings[row * self.cols + col]
-                        isShowFullScreen.toggle()
                     }
                 }
             }

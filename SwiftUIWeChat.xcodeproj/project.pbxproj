@@ -19,6 +19,7 @@
 		15C761CB27C536C00045DC13 /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C761CA27C536C00045DC13 /* NearbyView.swift */; };
 		15FDE07C27D78DCA008086FA /* View+SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDE07B27D78DCA008086FA /* View+SizeReader.swift */; };
 		15FDE07E27D78E13008086FA /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDE07D27D78E13008086FA /* FlexibleView.swift */; };
+		15FDE0A027E5E796008086FA /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDE09F27E5E795008086FA /* ImageViewer.swift */; };
 		6C3E082727C630E300AC21BC /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E082627C630E300AC21BC /* Moment.swift */; };
 		6C3E082927C63AB400AC21BC /* MomentListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E082827C63AB400AC21BC /* MomentListRowView.swift */; };
 		6C8508AB27E42A750036AF8E /* MyQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8508AA27E42A750036AF8E /* MyQRCodeView.swift */; };
@@ -77,6 +78,7 @@
 		15C761CA27C536C00045DC13 /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
 		15FDE07B27D78DCA008086FA /* View+SizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SizeReader.swift"; sourceTree = "<group>"; };
 		15FDE07D27D78E13008086FA /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
+		15FDE09F27E5E795008086FA /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		6C3E082627C630E300AC21BC /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		6C3E082827C63AB400AC21BC /* MomentListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListRowView.swift; sourceTree = "<group>"; };
 		6C8508AA27E42A750036AF8E /* MyQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQRCodeView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				6CE5B39B27D5E3300025D46C /* MomentLikesView.swift */,
 				6CE5B39D27D5FC730025D46C /* MomentCommentsView.swift */,
 				6CE5B37727D214890025D46C /* MomentEditorView.swift */,
+				15FDE09F27E5E795008086FA /* ImageViewer.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15FDE0A027E5E796008086FA /* ImageViewer.swift in Sources */,
 				6C86BD7C27C38B900055FF3F /* ImageLoaderService.swift in Sources */,
 				6C86BD7E27C38BF60055FF3F /* LocalFileManager.swift in Sources */,
 				6CE5B37027D1B78F0025D46C /* StickerViewModel.swift in Sources */,

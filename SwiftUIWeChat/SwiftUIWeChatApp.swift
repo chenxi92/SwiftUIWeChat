@@ -34,6 +34,9 @@ struct SwiftUIWeChatApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .overlay {
+                    ImageViewer()
+                }
                 .environmentObject(chatVM)
                 .environmentObject(contactsVM)
                 .environmentObject(momentsVM)
