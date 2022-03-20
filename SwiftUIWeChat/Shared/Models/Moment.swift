@@ -19,6 +19,7 @@ struct Moment: Identifiable, Codable {
     let link: URL?
     var likes: [Profile]
     var comments: [Comment]
+    let videoUrl: String?
 }
 
 extension Moment {
@@ -33,7 +34,16 @@ extension Moment {
 
 extension Moment {
     static func createMoment(text: String, profile: Profile) -> Moment {
-        return Moment(profile: profile, date: .now, text: text, images: [], link: nil, likes: [], comments: [])
+        return Moment(
+            profile: profile,
+            date: .now,
+            text: text,
+            images: [],
+            link: nil,
+            likes: [],
+            comments: [],
+            videoUrl: nil
+        )
     }
 }
 

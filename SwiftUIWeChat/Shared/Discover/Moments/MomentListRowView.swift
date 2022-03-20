@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct MomentListRowView: View {
     @EnvironmentObject var profileVM: ProfileViewModel
@@ -80,16 +81,18 @@ extension MomentListRowView {
         if let text = moment.text {
             Text(text)
                 .foregroundColor(.primary)
-        } else {
-            if moment.images.isEmpty {
-                EmptyView()
+        } else if !moment.images.isEmpty{
+            if moment.images.count == 1 {
+                SingleImage(urlString: moment.images[0])
             } else {
-                if moment.images.count == 1 {
-                    SingleImage(urlString: moment.images[0])
-                } else {
-                    MultipleImage(urlStrings: moment.images)
-                }
+                MultipleImage(urlStrings: moment.images)
             }
+        }
+        else if let videoUrl = moment.videoUrl {
+            VideoPlayerView(urlString: videoUrl)
+        }
+        else {
+            EmptyView()
         }
     }
     
@@ -130,7 +133,7 @@ extension MomentListRowView {
                 onLikeButtonPress()
             } label: {
                 Label("赞", systemImage: "heart")
-                    .padding(10)
+                    .padding(5)
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.5))
             }
@@ -139,7 +142,7 @@ extension MomentListRowView {
                 onCommentButtonPress()
             } label: {
                 Label("评论", systemImage: "message")
-                    .padding(10)
+                    .padding(5)
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.5))
             }
@@ -191,28 +194,6 @@ extension MomentListRowView {
 
 extension MomentListRowView {
     
-    struct FullScreenImageView: View {
-        let urlArray: [String]?
-        let urlString: String
-        
-        @Binding var isShowFullScreen: Bool
-        
-        var body: some View {
-            VStack {
-                ZStack {
-                    Color.black.ignoresSafeArea()
-                    CachedAsyncImage(url: URL(string: urlString) ?? nil)
-                }
-                .transition(AnyTransition.slide.animation(.spring()))
-                .onTapGesture {
-                    isShowFullScreen = false
-                }
-            }
-            .onTapGesture {
-                isShowFullScreen = false
-            }
-        }
-    }
     struct SingleImage: View {
         let urlString: String
         @EnvironmentObject var momentsVM: MomentsViewModel
@@ -280,6 +261,24 @@ extension MomentListRowView {
                     }
                 }
             }
+        }
+    }
+    
+    struct VideoPlayerView: View {
+        @StateObject var model: VideoPlayerViewModel
+        
+        init(urlString: String) {
+            _model = StateObject(wrappedValue: VideoPlayerViewModel(urlString: urlString))
+        }
+        var body: some View {
+            VideoPlayer(player: model.player)
+            .onAppear {
+                model.play()
+            }
+            .onDisappear {
+                model.stop()
+            }
+            .frame(height: 300)
         }
     }
 }

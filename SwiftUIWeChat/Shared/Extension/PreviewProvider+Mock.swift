@@ -23,6 +23,7 @@ struct Development {
     let profile3: Profile = Profile.all[2]
     let profile4: Profile = Profile.all[3]
     let profile5: Profile = Profile.all[4]
+    let profile6: Profile = Profile.all[5]
     
     var chats: [Chat] {
         [
@@ -121,7 +122,8 @@ struct Development {
             images: [],
             link: nil,
             likes: [profile2, profile3, profile4, profile5],
-            comments: [comment1]
+            comments: [comment1],
+            videoUrl: nil
         )
     }
     
@@ -133,7 +135,8 @@ struct Development {
             images: [],
             link: nil,
             likes: [],
-            comments: []
+            comments: [],
+            videoUrl: nil
         )
     }
     
@@ -147,7 +150,8 @@ struct Development {
             ],
             link: nil,
             likes: [profile1],
-            comments: []
+            comments: [],
+            videoUrl: nil
         )
     }
     
@@ -162,7 +166,8 @@ struct Development {
             ],
             link: nil,
             likes: [profile1],
-            comments: []
+            comments: [],
+            videoUrl: nil
         )
     }
     
@@ -184,13 +189,27 @@ struct Development {
             ],
             link: nil,
             likes: [profile1, profile2],
-            comments: []
+            comments: [],
+            videoUrl: nil
+        )
+    }
+    
+    var moment6: Moment {
+        Moment(
+            profile: profile6,
+            date: Date(timeIntervalSince1970: 3600 * 1.2),
+            text: nil,
+            images: [],
+            link: nil,
+            likes: [profile3, profile4],
+            comments: [],
+            videoUrl: "https://bit.ly/swswift"
         )
     }
     
     var moments: [Moment] {
         [
-            moment1, moment2, moment3, moment4, moment5
+            moment1, moment2, moment3, moment4, moment5, moment6
         ]
     }
     
