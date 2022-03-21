@@ -15,14 +15,12 @@ struct ImageViewer: View {
     var body: some View {
         ZStack {
             if !momentsVM.browseImages.isEmpty {
-                ZStack {
-                    backgroundView
-                    pageTabView
-                }
-                .gesture(dragGesture)
-                .transition(.move(edge: .bottom))
+                backgroundView
+                pageTabView
             }
         }
+        .gesture(dragGesture)
+        .transition(.move(edge: .bottom))
     }
     
     var backgroundView: some View {
@@ -33,7 +31,6 @@ struct ImageViewer: View {
     }
     
     var pageTabView: some View {
-
         TabView(selection: $momentsVM.selectedImageID) {
             ForEach(momentsVM.browseImages, id: \.self) { urlString in
                 CachedAsyncImage(url: URL(string: urlString)!) { image in

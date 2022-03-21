@@ -78,21 +78,22 @@ extension MomentListRowView {
     
     @ViewBuilder
     var content: some View {
-        if let text = moment.text {
-            Text(text)
-                .foregroundColor(.primary)
-        } else if !moment.images.isEmpty{
-            if moment.images.count == 1 {
-                SingleImage(urlString: moment.images[0])
-            } else {
-                MultipleImage(urlStrings: moment.images)
+        VStack(alignment: .leading) {
+            if let text = moment.text {
+                ExpandableText(text)
             }
-        }
-        else if let videoUrl = moment.videoUrl {
-            VideoPlayerView(urlString: videoUrl)
-        }
-        else {
-            EmptyView()
+            
+            if !moment.images.isEmpty{
+                if moment.images.count == 1 {
+                    SingleImage(urlString: moment.images[0])
+                } else {
+                    MultipleImage(urlStrings: moment.images)
+                }
+            }
+            
+            if let videoUrl = moment.videoUrl {
+                VideoPlayerView(urlString: videoUrl)
+            }
         }
     }
     
@@ -132,7 +133,7 @@ extension MomentListRowView {
             Button {
                 onLikeButtonPress()
             } label: {
-                Label("赞", systemImage: "heart")
+                Label("Like", systemImage: "heart")
                     .padding(5)
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.5))
@@ -141,7 +142,7 @@ extension MomentListRowView {
             Button {
                 onCommentButtonPress()
             } label: {
-                Label("评论", systemImage: "message")
+                Label("Comment", systemImage: "message")
                     .padding(5)
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.5))
@@ -149,7 +150,7 @@ extension MomentListRowView {
         }
         .clipShape(RoundedRectangle(cornerRadius: 5))
         .transition(
-            AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .scale)
+            AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .opacity)
         )
     }
     
@@ -243,23 +244,27 @@ extension MomentListRowView {
             HStack(spacing: spacing) {
                 ForEach(0..<(isLast ? self.lastRowCols : self.cols), id: \.self) { col in
                     let urlString = urlStrings[row * self.cols + col]
-                    let url: URL = URL(string: urlString)!
-                    CachedAsyncImage(url: url) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .tag(urlString)
-                            .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
-                            .aspectRatio(1, contentMode: .fill)
-                            .clipped()
-                            .onTapGesture {
-                                momentsVM.selectedImageID = urlString
-                                momentsVM.browseImages = urlStrings
-                            }
-                    } placeholder: {
-                        ProgressView()
-                    }
+                    imageView(urlString: urlString)
                 }
+            }
+        }
+        
+        func imageView(urlString: String) -> some View {
+            let url: URL = URL(string: urlString)!
+            return CachedAsyncImage(url: url) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .tag(urlString)
+                    .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
+                    .aspectRatio(1, contentMode: .fill)
+                    .clipped()
+                    .onTapGesture {
+                        momentsVM.selectedImageID = urlString
+                        momentsVM.browseImages = urlStrings
+                    }
+            } placeholder: {
+                ProgressView()
             }
         }
     }
