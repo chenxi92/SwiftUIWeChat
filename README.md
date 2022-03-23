@@ -3,6 +3,20 @@ A demo to simulate WeChat, only use SwiftUI.
 
 
 
+
+# Features
+
+- Audio record/play
+- Video play
+- QR Code
+- Image browser
+- Async image with cache
+- Gesture: Drag, LongPress, Mangification, Tap
+- Expandable Text View
+- Custom Shape
+- Loading Animation
+
+
 # References
 
 ## Reduceing space between sections for grouped list
