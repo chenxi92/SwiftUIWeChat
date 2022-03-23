@@ -95,3 +95,11 @@
 "Send" = "发送";
 "Show More" = "更多";
 "Show Less" = "收起";
+
+"Release to send" = "松开 发送";
+"Release to ancel" = "松开 取消";
+"Convert" = "转文字";
+"En" = "文";
+"[Audio]" = "[语音]";
+"[Photo]" = "[图片]";
+"|" = "|";

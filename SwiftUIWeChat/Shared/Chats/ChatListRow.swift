@@ -46,7 +46,7 @@ struct ChatListRow: View {
                 .padding(.bottom, 3)
                 
                 HStack {
-                    Text(chat.messages.last?.text ?? "")
+                    lastText
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
@@ -61,6 +61,23 @@ struct ChatListRow: View {
             }
         }
         .frame(maxWidth: .infinity)
+    }
+    
+    var lastText: some View {
+        guard let message = chat.messages.last else {
+            return Text("null")
+        }
+        
+        if let text = message.text {
+            return Text(text)
+        }
+        if let _ = message.audioURL {
+            return Text("[Audio]")
+        }
+        if let _ = message.imageURL {
+            return Text("[Photo]")
+        }
+        return Text("")
     }
 }
 

@@ -24,10 +24,38 @@ class ChatViewModel: ObservableObject {
     private let folderName: String = "chat"
     private let fileManager: LocalFileManager = LocalFileManager.instance
     
+    @Published var recordTime: Int = 0
+    private var audioRecordTimer: Timer? = nil
+    
+    @Published var isRecording: Bool = false
+    @Published var isDragLeading: Bool = false
+    @Published var isDragTrailing: Bool = false
+    @Published var isDragRelease: Bool = true
+    
+    private var currentRecordingChat: Chat? = nil
+    
+    @ObservedObject var audioRecorder: AudioRecorder
+    
     init() {
+        audioRecorder = AudioRecorder()
+        
         getData()
 
         addSubscriptions()
+        
+        applyAudioChange()
+    }
+    
+    /// In sandbox audio file may chages when relaunch the app
+    private func applyAudioChange() {
+        for recording in audioRecorder.recordingList {
+            if let i = chats.firstIndex(where: { $0.id == recording.chatId }) {
+                if let j = chats[i].messages.firstIndex(where: { $0.id == recording.messageId }) {
+                    print("begin chage audio url from:\n\(chats[i].messages[j].audioURL!)\nto->\n\(recording.fileURL)")
+                    chats[i].messages[j].audioURL = recording.fileURL
+                }
+            }
+        }
     }
     
     private func getData() {
@@ -113,7 +141,26 @@ class ChatViewModel: ObservableObject {
     
     func sendMessage(_ text: String, chat: Chat) -> Message? {
         if let index = chats.firstIndex(where: { $0.id == chat.id }) {
-            let message = Message(id: UUID(), type: .receiver, date: Date(), text: text)
+            let message = Message(text: text)
+            chats[index].messages.append(message)
+            return message
+        }
+        return nil
+    }
+    
+    @discardableResult
+    func sendAudio(_ recording: Recording, chat: Chat) -> Message? {
+        if let index = chats.firstIndex(where: { $0.id == chat.id }) {
+            let message = Message(recording: recording)
+            chats[index].messages.append(message)
+            return message
+        }
+        return nil
+    }
+    
+    func sendImage(_ imageURL: URL, chat: Chat) -> Message? {
+        if let index = chats.firstIndex(where: { $0.id == chat.id }) {
+            let message = Message(imageURL: imageURL)
             chats[index].messages.append(message)
             return message
         }
@@ -133,5 +180,62 @@ class ChatViewModel: ObservableObject {
 // MARK: - Chat
 
 extension ChatViewModel {
+    
+    func startRecord(chat: Chat) {
+        currentRecordingChat = chat
+        isRecording = true
+        
+        audioRecorder.startRecording(chat: chat)
+        
+        audioRecordTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.recordTime += 1
+        }
+    }
+    
+    func stopRecord() {
+        isRecording = false
+        
+        resetRecord()
+        
+        if let recording = audioRecorder.stopRecording(), let chat = currentRecordingChat {
+            sendAudio(recording, chat: chat)
+        }
+    }
+    
+    func deleteRecord() {
+        isRecording = false
+        
+        audioRecorder.deleteRecording()
+        
+        resetRecord()
+    }
+    
+    func updateCurrentLocaltion(location: CGPoint) {
+        let height = UIScreen.main.bounds.size.height
+        if height - location.y < 250 {
+            isDragRelease = true
+            isDragLeading = false
+            isDragTrailing = false
+            return
+        }
+        
+        isDragRelease = false
+        let width = UIScreen.main.bounds.size.width * 0.5
+        isDragLeading = location.x < width
+        isDragTrailing = location.x > width
+    }
+    
+    func getRocording(from audioFile: URL) -> Recording? {
+        audioRecorder.recordingList.first(where: { $0.fileURL == audioFile })
+    }
+    
+    private func resetRecord() {
+        audioRecordTimer?.invalidate()
+        recordTime = 0
+        
+        isDragRelease = true
+        isDragLeading = false
+        isDragTrailing = false
+    }
     
 }

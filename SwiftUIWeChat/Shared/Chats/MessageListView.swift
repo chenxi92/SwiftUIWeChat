@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MessageListView: View {
     @EnvironmentObject var chatVM: ChatViewModel
+    
     let chat: Chat
     
     @State private var text: String = ""
@@ -25,11 +26,8 @@ struct MessageListView: View {
     var body: some View {
         VStack(spacing: 0) {
             messageList()
-                .onTapGesture {
-                    tapedMessage = nil
-                    showHoldToTalk = false
-                    showStickerView = false
-                }
+                .gesture(tapGesture)
+            
             toolBarView()
             
             if showStickerView {
@@ -43,6 +41,14 @@ struct MessageListView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             toolbarButtons()
+        }
+    }
+    
+    var tapGesture: some Gesture {
+        TapGesture().onEnded { _ in
+            tapedMessage = nil
+            showHoldToTalk = false
+            showStickerView = false
         }
     }
 }
@@ -102,8 +108,8 @@ extension MessageListView {
                     
                     Text("Hold to Talk")
                         .opacity(showHoldToTalk ? 1 : 0)
-                        .onLongPressGesture {
-                            /// to do ...
+                        .onLongPressGesture(minimumDuration: 0.2) {
+                            chatVM.startRecord(chat: chat)
                         }
                 }
                 .frame(height: height)

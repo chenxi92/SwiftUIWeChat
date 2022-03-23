@@ -34,33 +34,28 @@ struct Development {
                 profile: profile1,
                 messages: [
                     Message(
-                        id: UUID(),
                         type: .receiver,
-                        date: Date(timeIntervalSince1970: 1582266033),
+                        dateString: "2022-03-23 14:12:00",
                         text: "I'm a student at Peking University. I was wondering whether I could be an intern here."
                     ),
                     Message(
-                        id: UUID(),
                         type: .sender,
-                        date: Date(timeIntervalSince1970: 1582266431),
+                        dateString: "2022-03-23 14:13:00",
                         text: "Are you good at writing?"
                     ),
                     Message(
-                        id: UUID(),
                         type: .receiver,
-                        date: Date(timeIntervalSince1970: 1582266501),
+                        dateString: "2022-03-23 14:14:00",
                         text: "Yes, I believe that I am. Here are some samples of my writings. Some of them were published in magazines."
                     ),
                     Message(
-                        id: UUID(),
                         type: .sender,
-                        date: Date(timeIntervalSince1970: 1586431713),
+                        dateString: "2022-03-23 14:15:00",
                         text: "Good. Would you like to be an assistant for one of our editors?"
                     ),
                     Message(
-                        id: UUID(),
                         type: .receiver,
-                        date: Date(timeIntervalSince1970: 1597836513),
+                        dateString: "2022-03-23 14:16:00",
                         text: "Yes, I would love to. Thank you."
                     )
                 ]
@@ -72,27 +67,23 @@ struct Development {
                 profile: profile2,
                 messages: [
                     Message(
-                        id: UUID(),
                         type: .sender,
-                        date: Date(timeIntervalSince1970: 1644791300),
+                        dateString: "2022-03-22 14:06:00",
                         text: "听说中国人的名字都有讲究，是吗?"
                     ),
                     Message(
-                        id: UUID(),
                         type: .receiver,
-                        date: Date(timeIntervalSince1970: 1644791275),
+                        dateString: "2022-03-22 14:16:00",
                         text: "是啊，很多人的名字都有一定的含义，表示一定的愿望。比如男人的名字用“强”表示坚强，女人的名字用“丽”表示美丽。不过现在的名字变化很大。"
                     ),
                     Message(
-                        id: UUID(),
                         type: .sender,
-                        date: Date(timeIntervalSince1970: 1645144304),
+                        dateString: "2022-03-23 04:16:00",
                         text: "梅，你的这个“梅”字有什么含义吗?"
                     ),
                     Message(
-                        id: UUID(),
                         type: .receiver,
-                        date: Date(timeIntervalSince1970: 1645144882),
+                        dateString: "2022-03-23 14:17:00",
                         text: "我是梅花盛开的时候生的，爸爸希望我能像梅花那么漂亮。"
                     ),
                 ]

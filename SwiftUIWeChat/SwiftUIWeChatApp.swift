@@ -35,7 +35,7 @@ struct SwiftUIWeChatApp: App {
         WindowGroup {
             ContentView()
                 .overlay {
-                    ImageViewer()
+                    globalOverlay
                 }
                 .environmentObject(chatVM)
                 .environmentObject(contactsVM)
@@ -43,4 +43,15 @@ struct SwiftUIWeChatApp: App {
                 .environmentObject(profileVM)
         }
     }
+    
+    @ViewBuilder var globalOverlay: some View {
+        if !momentsVM.browseImages.isEmpty {
+            ImageViewer()
+        } else if chatVM.isRecording {
+            AudioRecordView()
+        } else {
+            EmptyView()
+        }
+    }
 }
+
